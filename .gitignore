@@ -1,0 +1,7 @@
+.build/*
+*.pyc
+*.pyo
+.cortex*
+Measurements/*/*
+Persistent_Data_Objects/*/*
+preferences
