@@ -20,7 +20,7 @@ with open("README.md", "r") as readme_file:
     readme = readme_file.read()
 
 # Intialize variables
-requirements : list = ['FreiStat-Python @ git+https://git@github.com:IMTEK-FreiStat/FreiStat-Framework.git@main#egg=FreiStat-Python']
+requirements : list = ['FreiStat-Framework @ git+https://git@github.com:IMTEK-FreiStat/FreiStat-Framework.git@main#egg=FreiStat-Framework']
 
 setup(
     name= FS_GUI.__name__,
