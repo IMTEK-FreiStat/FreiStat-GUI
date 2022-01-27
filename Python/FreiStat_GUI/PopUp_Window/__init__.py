@@ -16,7 +16,7 @@ from tkinter import *
 from tkinter.ttk import *
 from FreiStat.Data_storage.constants import *
 import FreiStat as FS
-import Python.FreiStat_GUI as FS_GUI
+import FreiStat_GUI as FS_GUI
 
 # Import internal dependencies
 from ..Data_Storage.constants import *
