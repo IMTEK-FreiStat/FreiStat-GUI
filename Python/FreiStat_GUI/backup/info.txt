@@ -1,0 +1,2 @@
+This folder contains an automatically created backup file, which stores all
+templates which are created for the electrochemical methods.
