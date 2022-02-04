@@ -158,13 +158,16 @@ class DataHandling:
 
         """
         # Load data storage object
-        with open(strFilePath, "rb") as input:
-            # Overrite data objects with loaded data objects
-            self._listDataObject = pickle.load(input)   
+        try:
+            with open(strFilePath, "rb") as input:
+                # Overrite data objects with loaded data objects
+                self._listDataObject = pickle.load(input)   
 
-        # Close input reader
-        input.close      
-
+            # Close input reader
+            input.close      
+        except:
+            pass
+        
     def export_Settings(self) -> None:
         """
         Description
