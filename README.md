@@ -25,3 +25,5 @@ The FreiStat supports communication over serial USB, WiFi or as a standalone mic
 ## About
 This repository contains the GUI of the FreiStat Python library. For running this GUI
 the main [FreiStat-Framework](https://github.com/IMTEK-FreiStat/FreiStat-Framework) is required.
+Informations about the function scope, as well as help can be found in the 
+[wiki](https://github.com/IMTEK-FreiStat/FreiStat-GUI/wiki).
