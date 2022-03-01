@@ -431,7 +431,7 @@ class FreiStatInterface():
             [SET_CLIENT_IP, self._strClientIP.get()],
             [SET_CLIENT_PORT, self._strClientPort.get()]
         ]
-        print(listPreferences)
+
         # Save preferences
         self._dataHandling.set_Preferences(listPreferences)
 
