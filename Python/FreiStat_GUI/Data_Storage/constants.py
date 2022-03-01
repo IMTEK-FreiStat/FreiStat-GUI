@@ -154,6 +154,19 @@ SET_CLIENT_IP           = "pCIP"        # Parameter for the client ip
 SET_CLIENT_PORT         = "pCPO"        # Parameter for the client port
 
 """-----------------------------------------------------------------------------
+| Configuration parameters: Settings/ Preferences - Default Values
+|   
+|   Constant              Value
+-----------------------------------------------------------------------------"""
+SET_GLPM_VALUE          = 0             # Default value for the global low performance mode
+SET_GLPM_LATENCY_VALUE  = "1"           # Default value for the g.LPM latency in ms
+SET_WLAN_MODE_VALUE     = 0             # Default value for the wlan mode
+SET_SERVER_IP_VALUE     = "192.168.1.2" # Default value for the server ip
+SET_SERVER_PORT_VALUE   = "20001"       # Default value for the server port
+SET_CLIENT_IP_VALUE     = "192.168.1.1" # Default value for the client ip
+SET_CLIENT_PORT_VALUE   = "20000"       # Default value for the client port
+
+"""-----------------------------------------------------------------------------
 | Configuration parameters: Abbreviations
 |   
 |   Constant              Value                     Meaning

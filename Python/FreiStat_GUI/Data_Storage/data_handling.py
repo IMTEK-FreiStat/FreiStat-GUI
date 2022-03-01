@@ -189,6 +189,17 @@ class DataHandling:
         """
         # Check if preferences exist already
         if(os.path.exists(self._strRootPath + "\preferences") == False):
+            listPreferences : list = [
+                [SET_GLPM, SET_GLPM_VALUE],
+                [SET_GLPM_LATENCY, SET_GLPM_LATENCY_VALUE],
+                [SET_WLAN_MODE, SET_WLAN_MODE_VALUE],
+                [SET_SERVER_IP, SET_SERVER_IP_VALUE],
+                [SET_SERVER_PORT, SET_SERVER_PORT_VALUE],
+                [SET_CLIENT_IP, SET_CLIENT_IP_VALUE],
+                [SET_CLIENT_PORT, SET_CLIENT_PORT_VALUE]
+            ]
+            self.set_Preferences(listPreferences)
+            
             return
             
         # Load data storage object
