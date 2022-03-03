@@ -84,3 +84,29 @@ dic_parameters = {
                            "Possible values: 0, 2, 4, 5"]
 
 }
+
+dic_helpText = {
+    GENERAL             : ["Online Wiki",
+                           "Visit IMTEK-FreiStat on GitHub for furhter information and help"],
+    SINGLE_MODE         : ["1. Press \"Single Mode\" in the header",
+                           "2. Select electrochemical method in the left menu",
+                           "3. Adjust experiment parameters",
+                           "4. Save template by pressing the save icon",
+                           "5. Press \"Start\" in the header"],
+    SEQUENCE_MODE       : ["1. Press \"Seqeunce Mode\" in the header",
+                           "2. Add electrochemical methods of choice by pressing \"Add\" in the left menu",
+                           "3. Adjust experiment parameters for every electrochemical method",
+                           "4. Save every method in the sequnece (save icon without \"S\" indicator)",
+                           "5. Save sequence template by pressing the save icon with the \"S\" indicator",
+                           "6. Press \"Start\" in the header"],
+    TEMPLATES           : ["Create template:",
+                           "- If a method is saved, a template is saved using the \"Template Name\"",
+                           "Load template:",
+                           "- Press the load icon in \"Single mode\" or \"Sequence mode\"",
+                           "- Select template which should be loaded in the right menu"],
+    DATA_EXPORT         : ["Data export location:",
+                           "- FreiStat creates 2 folders (\"Persistent_Data_Objects\" and \"Measurements\")",
+                           "- These folders are located in the same location as the executing Python file",
+                           "- Structure inside these folders: \"\\YY_MM_DD\\HH_MM_SS\\\"",
+                           "- Stores experiment parameters and measurement results"]
+}

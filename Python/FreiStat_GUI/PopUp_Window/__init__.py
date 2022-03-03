@@ -80,14 +80,61 @@ class FreiStatPopUp():
         # Check if window is open and just hidden
         try:
             # Unhide window
-            self._PopUpRoot.geometry(f'{PW_X_POSITION}x{PW_Y_POSITION}+{self._iCenterX + 50}+{self._iCenterY + 50}')
+            self._PopUpRoot.geometry(f'{2*PW_X_POSITION}x{PW_Y_POSITION}+{self._iCenterX + 50}+{self._iCenterY + 50}')
             self._PopUpRoot.overrideredirect(0)
             self._PopUpRoot.deiconify()
             self._clearFrame(self._PopUpRoot)
+
+            # Set title of the window
+            self._PopUpRoot.title("Help")
         except:
             # Create new window
             self._initWindow()
             self._PopUpRoot.deiconify() 
+
+        self._TabControl = Notebook(self._PopUpRoot)
+        tab1 = Frame(self._TabControl)
+        tab2 = Frame(self._TabControl)
+        tab3 = Frame(self._TabControl)
+        tab4 = Frame(self._TabControl)
+        tab5 = Frame(self._TabControl)
+
+        self._TabControl.add(tab1, text = "General")
+        self._TabControl.add(tab2, text = "Single Mode")
+        self._TabControl.add(tab3, text = "Sequence Mode")
+        self._TabControl.add(tab4, text = "Templates")
+        self._TabControl.add(tab5, text = "Data Export")
+        self._TabControl.pack(expand = TRUE, fill ="both")
+
+        # General
+        for iIndex in range(len(dic_helpText[GENERAL])):
+            helpText = Label(tab1, text= dic_helpText[GENERAL][iIndex], 
+                            style= "fLabelGeneralBold.TLabel")
+            helpText.pack(fill ="both", side= TOP)
+
+        # Single Mode
+        for iIndex in range(len(dic_helpText[SINGLE_MODE])):
+            helpText = Label(tab2, text= dic_helpText[SINGLE_MODE][iIndex], 
+                            style= "fLabelGeneralBold.TLabel")
+            helpText.pack(fill ="both", side= TOP)
+
+        # Sequence Mode
+        for iIndex in range(len(dic_helpText[SEQUENCE_MODE])):
+            helpText = Label(tab3, text= dic_helpText[SEQUENCE_MODE][iIndex], 
+                            style= "fLabelGeneralBold.TLabel")
+            helpText.pack(fill ="both", side= TOP)
+
+        # Templates
+        for iIndex in range(len(dic_helpText[TEMPLATES])):
+            helpText = Label(tab4, text= dic_helpText[TEMPLATES][iIndex], 
+                            style= "fLabelGeneralBold.TLabel")
+            helpText.pack(fill ="both", side= TOP)
+
+        # Data Export
+        for iIndex in range(len(dic_helpText[DATA_EXPORT])):
+            helpText = Label(tab5, text= dic_helpText[DATA_EXPORT][iIndex], 
+                            style= "fLabelGeneralBold.TLabel")
+            helpText.pack(fill ="both", side= TOP)
 
     def PopUp_About(self) -> None:
         """
@@ -103,6 +150,9 @@ class FreiStatPopUp():
             self._PopUpRoot.overrideredirect(0)
             self._PopUpRoot.deiconify()
             self._clearFrame(self._PopUpRoot)
+
+            # Set title of the window
+            self._PopUpRoot.title("About")
         except:
             # Create new window
             self._initWindow()

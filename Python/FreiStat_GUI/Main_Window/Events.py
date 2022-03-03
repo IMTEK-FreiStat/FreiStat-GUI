@@ -40,7 +40,7 @@ def _bound_MouseWheel(self, event, frame, canvas) -> None:
         Canvas which should be scrolled
 
     """
-    frame.bind("<MouseWheel>", lambda event, canvas = canvas: self._onMouseWheel(event, canvas))
+    frame.bind_all("<MouseWheel>", lambda event, canvas = canvas: self._onMouseWheel(event, canvas))
 
 def _unbound_MouseWheel(self, event, frame) -> None:
     """
@@ -57,7 +57,7 @@ def _unbound_MouseWheel(self, event, frame) -> None:
         Frame at which the mouse wheel scrolling should be removed
 
     """
-    frame.unbind("<MouseWheel>")
+    frame.unbind_all("<MouseWheel>")
 
 def _onMouseWheel(self, event, canvas) -> None:
     """

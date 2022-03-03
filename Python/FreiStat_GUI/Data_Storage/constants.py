@@ -203,3 +203,14 @@ FIXED_WE_POTENTIAL_U    = ""
 MAINS_FILTER_U          = ""  
 SINC2_OVERSAMPLING_U    = ""       
 SINC3_OVERSAMPLING_U    = ""    
+
+"""-----------------------------------------------------------------------------
+| Help Texts: Abbrebviations
+|   
+|   Constant              Value
+-----------------------------------------------------------------------------"""
+GENERAL                 = "hG"          # Abbreviation for help Text General
+SINGLE_MODE             = "hSM"         # Single Mode
+SEQUENCE_MODE           = "hSEM"        # Sequence Mode
+TEMPLATES               = "hT"          # Templates
+DATA_EXPORT             = "hDE"         # Date export
