@@ -142,7 +142,7 @@ class FreiStatInterface():
         self._strFocusedFrame : str = None
         self._strOsPath : str = ""
         self._strAssetPath : str = __path__[0] + './../'
-        self._strOsPathBackup : str = self._strAssetPath + "./backup/backup"
+        self._strOsPathBackup : str = self._strAssetPath + "./backup/backup.fst"
 
         self._listCanvas : list = []
         self._listCanvasPressIDs : list = []
@@ -160,9 +160,9 @@ class FreiStatInterface():
         
         # Calculate center coordinations
         iCenterX, iCenterY = _calculate_WindowPosition(self._Root)
-
+        
         # Position window in the middle of the screen
-        self._Root.geometry(f'{MW_X_POSITION}x{MW_Y_POSITION}+{iCenterX}+{iCenterY}')
+        self._Root.geometry(f'{int(self._Root.winfo_screenwidth()*  0.8)}x{int(self._Root.winfo_screenheight()*0.8)}+{iCenterX}+{iCenterY}')
 
         # Add protocol to closing the main window
         self._Root.protocol("WM_DELETE_WINDOW", self._on_Closing)
@@ -223,6 +223,9 @@ class FreiStatInterface():
         # Create instance of the data handling
         self._dataHandling = DataHandling(self._strRootPath)
 
+        # Create base for PopUp windoes
+        self._PopUpWindow = FreiStatPopUp(iCenterX, iCenterY)
+
         # Crfeate the different sub frames inside the main window
         # Ribbon at the most top
         self._create_RibbonFrame(self._Root)
@@ -257,7 +260,8 @@ class FreiStatInterface():
         self._logger.addHandler(handler)
 
         # Import safety backup
-        self._dataHandling.import_Configuration(self._strOsPathBackup)
+        self._dataHandling.set_DataStorages(
+            self._dataHandling.import_Configuration(self._strOsPathBackup))
 
         # Import settings
         self._dataHandling.import_Settings()
@@ -265,9 +269,6 @@ class FreiStatInterface():
 
         # Show entry screen
         self._update_CentralFrame_EntryScreen(self._fCentralFrame)
-
-        # Create base for PopUp windoes
-        self._PopUpWindow = FreiStatPopUp(iCenterX, iCenterY)
 
         # Call main loop
         self.Main()
@@ -286,7 +287,7 @@ class FreiStatInterface():
                 self._process.is_alive() == False):
                 # Update system status
                 self._iSystemStatus = FS_COMPLETED
-
+                
                 # Enable start button and disable stop / live feed button
                 self._ButtonStart["state"] = NORMAL
                 self._ButtonStop["state"] = DISABLED
@@ -560,7 +561,7 @@ class FreiStatInterface():
             # Get experiment paramters
             listExperimentParameters = self._dataHandling. \
                 get_ExperimentParameters()
-
+            
             self._strTemplate.set(self._dataHandling.get_TemplateName())
 
         if (strMethod == CA):

@@ -44,3 +44,56 @@ def _on_rightclick_release(self, event, entry):
     """
     self._PopUpRoot.withdraw()
 
+def _bound_MouseWheel(self, event, frame, canvas) -> None:
+    """
+    Description
+    -----------
+    Helper method which binds the mouse scroll event to a certain canvas frame.
+    
+    Parameters
+    ----------
+    `event` : event
+        Event which should be handled
+
+    `frame` : frame
+        Frame at which the mouse wheel scrolling should work
+
+    `canvas` : canvas
+        Canvas which should be scrolled
+
+    """
+    frame.bind_all("<MouseWheel>", lambda event, canvas = canvas: self._onMouseWheel(event, canvas))
+
+def _unbound_MouseWheel(self, event, frame) -> None:
+    """
+    Description
+    -----------
+    Helper method which unbinds the mouse scroll event to a certain canvas frame.
+    
+    Parameters
+    ----------
+    `event` : event
+        Event which should be handled
+
+    `frame` : frame
+        Frame at which the mouse wheel scrolling should be removed
+
+    """
+    frame.unbind_all("<MouseWheel>")
+
+def _onMouseWheel(self, event, canvas) -> None:
+    """
+    Description
+    -----------
+    Helper method which defines what happens on mouse scroll.
+    
+    Parameters
+    ----------
+    `event` : event
+        Event which should be handled
+
+    `canvas` : canvas
+        Canvas which should be scrolled
+
+    """
+    canvas.yview_scroll(int(-1*(event.delta/120)),"units")

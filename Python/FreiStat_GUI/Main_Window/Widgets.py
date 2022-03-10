@@ -36,7 +36,8 @@ def _clickRibbonButton(self, iCommand : int) -> None:
         # Get file path
         self._strOsPath = self._openFileExplorer(BUTTON_LOAD)
         if (self._strOsPath != ""):
-            self._dataHandling.import_Configuration(self._strOsPath)
+            self._PopUpWindow.PopUp_TemplateHandler(IMPORT_TEMPLATE, self._dataHandling,
+                self._dataHandling.import_Configuration(self._strOsPath), self._strOsPath)
         else :
             self._logger.info("No path selected, configuration not loaded.")
 
@@ -62,7 +63,8 @@ def _clickRibbonButton(self, iCommand : int) -> None:
         self._strOsPath= self._openFileExplorer(BUTTON_SAVEAS)
         if (self._strOsPath != ""):
             # Save config at location
-            self._dataHandling.export_Configuration(self._strOsPath)
+            self._PopUpWindow.PopUp_TemplateHandler(EXPORT_TEMPLATE,
+                self._dataHandling, self._dataHandling.get_DataStorages(), self._strOsPath)
         else :
             self._logger.info("No path selected, configuration not saved.")
 
@@ -554,6 +556,9 @@ def _clickSequenceMethod(self, iCommand : int, button : Button) -> None:
         Widget.nametowidget(self._Root, self._strFocusedFrame). \
             configure(style= "fWidgetButton.TFrame")
 
+    # Save template of previous method on changing focus
+    self._clickButton(BUTTON_SAVE_TEMPLATE)
+
     # Update new focused element
     self._strFocusedFrame = button.winfo_parent()
 
@@ -567,7 +572,7 @@ def _clickSequenceMethod(self, iCommand : int, button : Button) -> None:
         self._update_CentralFrame_CA(self._fOptionsSequence)
 
     elif (iCommand == BUTTON_SM_PARA_EC_LSV):
-        # Add method to the sequence
+        # Open config for ec-method
         self._update_CentralFrame_LSV(self._fOptionsSequence)
 
     elif (iCommand == BUTTON_SM_PARA_EC_CV):

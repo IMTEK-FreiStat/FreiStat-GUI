@@ -59,13 +59,31 @@ def _create_UtilitybandFrame(self, parentFrame: Frame) -> None:
         command= lambda : self._clickButton(BUTTON_DELETE_TEMPLATE))        
     ButtonReset.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
+    ButtonReset.bind("<Enter>", lambda event, 
+        entry = DELETE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+    
+    ButtonReset.bind("<Leave>", lambda event, 
+        entry = DELETE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+
     ButtonLoad = Button(self._fUtilitybandFrame, image=self._IconLoad, 
         command= lambda : self._clickButton(BUTTON_LOAD_TEMPLATE))        
     ButtonLoad.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
+    ButtonLoad.bind("<Enter>", lambda event, 
+        entry = LOAD_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+    
+    ButtonLoad.bind("<Leave>", lambda event, 
+        entry = LOAD_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+
     ButtonSave = Button(self._fUtilitybandFrame, image=self._IconSave, 
         command= lambda : self._clickButton(BUTTON_SAVE_TEMPLATE))        
     ButtonSave.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
+
+    ButtonSave.bind("<Enter>", lambda event, 
+        entry = SAVE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+    
+    ButtonSave.bind("<Leave>", lambda event, 
+        entry = SAVE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
 
 def _update_CentralFrame_EntryScreen(self, parentFrame: Frame) -> None:
     """
@@ -169,9 +187,9 @@ def _update_CentralFrame_Base(self, parentFrame: Frame) -> None:
         width= ENTRY_WIDTH)        
     EntryTemplate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)    
 
-    EntryTemplate.bind("<Button-3>", lambda event, 
+    EntryTemplate.bind("<Enter>", lambda event, 
         entry = TEMPLATE_NAME : self._PopUpWindow._on_rightclick(event, entry))
-    EntryTemplate.bind("<ButtonRelease-3>", lambda event, 
+    EntryTemplate.bind("<Leave>", lambda event, 
         entry = TEMPLATE_NAME  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
@@ -209,9 +227,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
         variable= self._iGlobalLowPerformanceMode)        
     EntryGLpMode.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryGLpMode.bind("<Button-3>", lambda event, 
+    EntryGLpMode.bind("<Enter>", lambda event, 
         entry = SET_GLPM : self._PopUpWindow._on_rightclick(event, entry))
-    EntryGLpMode.bind("<ButtonRelease-3>", lambda event, 
+    EntryGLpMode.bind("<Leave>", lambda event, 
         entry = SET_GLPM  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Low performance mode latency
@@ -227,9 +245,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryGLpModeL.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryGLpModeL.bind("<Button-3>", lambda event, 
+    EntryGLpModeL.bind("<Enter>", lambda event, 
         entry = SET_GLPM_LATENCY : self._PopUpWindow._on_rightclick(event, entry))
-    EntryGLpModeL.bind("<ButtonRelease-3>", lambda event, 
+    EntryGLpModeL.bind("<Leave>", lambda event, 
         entry = SET_GLPM_LATENCY  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # WLAN mode
@@ -244,9 +262,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
         onvalue= True, offvalue= False)        
     EntryWLANMode.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryWLANMode.bind("<Button-3>", lambda event, 
+    EntryWLANMode.bind("<Enter>", lambda event, 
         entry = SET_WLAN_MODE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryWLANMode.bind("<ButtonRelease-3>", lambda event, 
+    EntryWLANMode.bind("<Leave>", lambda event, 
         entry = SET_WLAN_MODE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Server IP
@@ -262,9 +280,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryServerIP.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryServerIP.bind("<Button-3>", lambda event, 
+    EntryServerIP.bind("<Enter>", lambda event, 
         entry = SET_SERVER_IP : self._PopUpWindow._on_rightclick(event, entry))
-    EntryServerIP.bind("<ButtonRelease-3>", lambda event, 
+    EntryServerIP.bind("<Leave>", lambda event, 
         entry = SET_SERVER_IP  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Server Port
@@ -280,9 +298,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryServerPort.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryServerPort.bind("<Button-3>", lambda event, 
+    EntryServerPort.bind("<Enter>", lambda event, 
         entry = SET_SERVER_PORT : self._PopUpWindow._on_rightclick(event, entry))
-    EntryServerPort.bind("<ButtonRelease-3>", lambda event, 
+    EntryServerPort.bind("<Leave>", lambda event, 
         entry = SET_SERVER_PORT  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Client IP
@@ -298,9 +316,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryClientIP.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryClientIP.bind("<Button-3>", lambda event, 
+    EntryClientIP.bind("<Enter>", lambda event, 
         entry = SET_CLIENT_IP : self._PopUpWindow._on_rightclick(event, entry))
-    EntryClientIP.bind("<ButtonRelease-3>", lambda event, 
+    EntryClientIP.bind("<Leave>", lambda event, 
         entry = SET_CLIENT_IP  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Client Port
@@ -316,9 +334,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryClientPort.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryClientPort.bind("<Button-3>", lambda event, 
+    EntryClientPort.bind("<Enter>", lambda event, 
         entry = SET_CLIENT_PORT : self._PopUpWindow._on_rightclick(event, entry))
-    EntryClientPort.bind("<ButtonRelease-3>", lambda event, 
+    EntryClientPort.bind("<Leave>", lambda event, 
         entry = SET_CLIENT_PORT  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Bind leave event to _fCentralParameterFrame
@@ -361,9 +379,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
         validatecommand= (fPotentialSteps.register(_valdiate_ArrayEntries),'%S','%d'))        
     EntryPotentialSteps.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryPotentialSteps.bind("<Button-3>", lambda event, 
+    EntryPotentialSteps.bind("<Enter>", lambda event, 
         entry = POTENTIAL_STEPS : self._PopUpWindow._on_rightclick(event, entry))
-    EntryPotentialSteps.bind("<ButtonRelease-3>", lambda event, 
+    EntryPotentialSteps.bind("<Leave>", lambda event, 
         entry = POTENTIAL_STEPS  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Pulse lengths
@@ -379,9 +397,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
         (fPulseLengths.register(_valdiate_ArrayEntries),'%S','%d'))        
     EntryPulseLengths.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryPulseLengths.bind("<Button-3>", lambda event, 
+    EntryPulseLengths.bind("<Enter>", lambda event, 
         entry = PULSE_LENGTH : self._PopUpWindow._on_rightclick(event, entry))
-    EntryPulseLengths.bind("<ButtonRelease-3>", lambda event, 
+    EntryPulseLengths.bind("<Leave>", lambda event, 
         entry = PULSE_LENGTH  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Sampling rate
@@ -397,9 +415,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
         (fSamplingRate.register(_valdiate_ValueEntries),'%S','%d'))        
     EntrySamplingRate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntrySamplingRate.bind("<Button-3>", lambda event, 
+    EntrySamplingRate.bind("<Enter>", lambda event, 
         entry = SAMPLING_RATE : self._PopUpWindow._on_rightclick(event, entry))
-    EntrySamplingRate.bind("<ButtonRelease-3>", lambda event, 
+    EntrySamplingRate.bind("<Leave>", lambda event, 
         entry = SAMPLING_RATE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Cycles
@@ -415,9 +433,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCycle.bind("<Button-3>", lambda event, 
+    EntryCycle.bind("<Enter>", lambda event, 
         entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCycle.bind("<ButtonRelease-3>", lambda event, 
+    EntryCycle.bind("<Leave>", lambda event, 
         entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # CurrentRange
@@ -433,9 +451,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
         (fCurrentRange.register(_valdiate_ValueEntries),'%S','%d'))        
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCurrentRange.bind("<Button-3>", lambda event, 
+    EntryCurrentRange.bind("<Enter>", lambda event, 
         entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCurrentRange.bind("<ButtonRelease-3>", lambda event, 
+    EntryCurrentRange.bind("<Leave>", lambda event, 
         entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
@@ -487,9 +505,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStartVoltage.bind("<Button-3>", lambda event, 
+    EntryStartVoltage.bind("<Enter>", lambda event, 
         entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStartVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStartVoltage.bind("<Leave>", lambda event, 
         entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # StopVoltage
@@ -505,9 +523,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStopVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStopVoltage.bind("<Button-3>", lambda event, 
+    EntryStopVoltage.bind("<Enter>", lambda event, 
         entry = STOP_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStopVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStopVoltage.bind("<Leave>", lambda event, 
         entry = STOP_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Stepsize
@@ -523,9 +541,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStepsize.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStepsize.bind("<Button-3>", lambda event, 
+    EntryStepsize.bind("<Enter>", lambda event, 
         entry = STEP_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStepsize.bind("<ButtonRelease-3>", lambda event, 
+    EntryStepsize.bind("<Leave>", lambda event, 
         entry = STEP_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Scanrate
@@ -541,9 +559,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryScanrate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryScanrate.bind("<Button-3>", lambda event, 
+    EntryScanrate.bind("<Enter>", lambda event, 
         entry = SCAN_RATE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryScanrate.bind("<ButtonRelease-3>", lambda event, 
+    EntryScanrate.bind("<Leave>", lambda event, 
         entry = SCAN_RATE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Cycles
@@ -559,9 +577,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCycle.bind("<Button-3>", lambda event, 
+    EntryCycle.bind("<Enter>", lambda event, 
         entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCycle.bind("<ButtonRelease-3>", lambda event, 
+    EntryCycle.bind("<Leave>", lambda event, 
         entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # CurrentRange
@@ -577,9 +595,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCurrentRange.bind("<Button-3>", lambda event, 
+    EntryCurrentRange.bind("<Enter>", lambda event, 
         entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCurrentRange.bind("<ButtonRelease-3>", lambda event, 
+    EntryCurrentRange.bind("<Leave>", lambda event, 
         entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
@@ -631,9 +649,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStartVoltage.bind("<Button-3>", lambda event, 
+    EntryStartVoltage.bind("<Enter>", lambda event, 
         entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStartVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStartVoltage.bind("<Leave>", lambda event, 
         entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # LowerTurningVoltage
@@ -649,9 +667,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryLowerVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryLowerVoltage.bind("<Button-3>", lambda event, 
+    EntryLowerVoltage.bind("<Enter>", lambda event, 
         entry = LOWER_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryLowerVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryLowerVoltage.bind("<Leave>", lambda event, 
         entry = LOWER_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # UpperTurningVoltage
@@ -667,9 +685,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryUpperVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryUpperVoltage.bind("<Button-3>", lambda event, 
+    EntryUpperVoltage.bind("<Enter>", lambda event, 
         entry = UPPER_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryUpperVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryUpperVoltage.bind("<Leave>", lambda event, 
         entry = UPPER_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Stepsize
@@ -685,9 +703,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStepsize.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStepsize.bind("<Button-3>", lambda event, 
+    EntryStepsize.bind("<Enter>", lambda event, 
         entry = STEP_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStepsize.bind("<ButtonRelease-3>", lambda event, 
+    EntryStepsize.bind("<Leave>", lambda event, 
         entry = STEP_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Scanrate
@@ -703,9 +721,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryScanrate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryScanrate.bind("<Button-3>", lambda event, 
+    EntryScanrate.bind("<Enter>", lambda event, 
         entry = SCAN_RATE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryScanrate.bind("<ButtonRelease-3>", lambda event, 
+    EntryScanrate.bind("<Leave>", lambda event, 
         entry = SCAN_RATE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Cycles
@@ -721,9 +739,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCycle.bind("<Button-3>", lambda event, 
+    EntryCycle.bind("<Enter>", lambda event, 
         entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCycle.bind("<ButtonRelease-3>", lambda event, 
+    EntryCycle.bind("<Leave>", lambda event, 
         entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # CurrentRange
@@ -739,9 +757,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCurrentRange.bind("<Button-3>", lambda event, 
+    EntryCurrentRange.bind("<Enter>", lambda event, 
         entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCurrentRange.bind("<ButtonRelease-3>", lambda event, 
+    EntryCurrentRange.bind("<Leave>", lambda event, 
         entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
@@ -793,9 +811,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryBaseVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryBaseVoltage.bind("<Button-3>", lambda event, 
+    EntryBaseVoltage.bind("<Enter>", lambda event, 
         entry = BASE_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryBaseVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryBaseVoltage.bind("<Leave>", lambda event, 
         entry = BASE_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # StartVoltage
@@ -811,9 +829,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStartVoltage.bind("<Button-3>", lambda event, 
+    EntryStartVoltage.bind("<Enter>", lambda event, 
         entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStartVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStartVoltage.bind("<Leave>", lambda event, 
         entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # StopVoltage
@@ -829,9 +847,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStopVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStopVoltage.bind("<Button-3>", lambda event, 
+    EntryStopVoltage.bind("<Enter>", lambda event, 
         entry = STOP_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStopVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStopVoltage.bind("<Leave>", lambda event, 
         entry = STOP_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # DeltaV staircase
@@ -847,9 +865,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
         validatecommand= (fDeltaVStaircase.register(_valdiate_ValueEntries),'%S','%d'))        
     EntryDeltaVStaircase.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryDeltaVStaircase.bind("<Button-3>", lambda event, 
+    EntryDeltaVStaircase.bind("<Enter>", lambda event, 
         entry = DELTA_V_STAIRCASE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryDeltaVStaircase.bind("<ButtonRelease-3>", lambda event, 
+    EntryDeltaVStaircase.bind("<Leave>", lambda event, 
         entry = DELTA_V_STAIRCASE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Pulse lengths
@@ -865,9 +883,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
         (fPulseLengths.register(_valdiate_ArrayEntries),'%S','%d'))        
     EntryPulseLengths.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryPulseLengths.bind("<Button-3>", lambda event, 
+    EntryPulseLengths.bind("<Enter>", lambda event, 
         entry = PULSE_LENGTH : self._PopUpWindow._on_rightclick(event, entry))
-    EntryPulseLengths.bind("<ButtonRelease-3>", lambda event, 
+    EntryPulseLengths.bind("<Leave>", lambda event, 
         entry = PULSE_LENGTH  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Sampling duration
@@ -883,9 +901,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
         (fSamplingDuration. register(_valdiate_ValueEntries),'%S','%d'))        
     EntrySamplingDuration.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntrySamplingDuration.bind("<Button-3>", lambda event, 
+    EntrySamplingDuration.bind("<Enter>", lambda event, 
         entry = SAMPLING_DURATION : self._PopUpWindow._on_rightclick(event, entry))
-    EntrySamplingDuration.bind("<ButtonRelease-3>", lambda event, 
+    EntrySamplingDuration.bind("<Leave>", lambda event, 
         entry = SAMPLING_DURATION  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Cycles
@@ -901,9 +919,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCycle.bind("<Button-3>", lambda event, 
+    EntryCycle.bind("<Enter>", lambda event, 
         entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCycle.bind("<ButtonRelease-3>", lambda event, 
+    EntryCycle.bind("<Leave>", lambda event, 
         entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # CurrentRange
@@ -919,9 +937,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCurrentRange.bind("<Button-3>", lambda event, 
+    EntryCurrentRange.bind("<Enter>", lambda event, 
         entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCurrentRange.bind("<ButtonRelease-3>", lambda event, 
+    EntryCurrentRange.bind("<Leave>", lambda event, 
         entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
@@ -973,9 +991,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStartVoltage.bind("<Button-3>", lambda event, 
+    EntryStartVoltage.bind("<Enter>", lambda event, 
         entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStartVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStartVoltage.bind("<Leave>", lambda event, 
         entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # StopVoltage
@@ -991,9 +1009,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStopVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStopVoltage.bind("<Button-3>", lambda event, 
+    EntryStopVoltage.bind("<Enter>", lambda event, 
         entry = STOP_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStopVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStopVoltage.bind("<Leave>", lambda event, 
         entry = STOP_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # DeltaV staircase
@@ -1009,9 +1027,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
         (fDeltaVStaircase.register(_valdiate_ValueEntries),'%S','%d'))        
     EntryDeltaVStaircase.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryDeltaVStaircase.bind("<Button-3>", lambda event, 
+    EntryDeltaVStaircase.bind("<Enter>", lambda event, 
         entry = DELTA_V_STAIRCASE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryDeltaVStaircase.bind("<ButtonRelease-3>", lambda event, 
+    EntryDeltaVStaircase.bind("<Leave>", lambda event, 
         entry = DELTA_V_STAIRCASE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # DeltaV peak
@@ -1027,9 +1045,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryDeltaVPeak.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryDeltaVPeak.bind("<Button-3>", lambda event, 
+    EntryDeltaVPeak.bind("<Enter>", lambda event, 
         entry = DELTA_V_PEAK : self._PopUpWindow._on_rightclick(event, entry))
-    EntryDeltaVPeak.bind("<ButtonRelease-3>", lambda event, 
+    EntryDeltaVPeak.bind("<Leave>", lambda event, 
         entry = DELTA_V_PEAK  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Pulse lengths
@@ -1045,9 +1063,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
         (fPulseLengths.register(_valdiate_ArrayEntries),'%S','%d'))        
     EntryPulseLengths.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryPulseLengths.bind("<Button-3>", lambda event, 
+    EntryPulseLengths.bind("<Enter>", lambda event, 
         entry = PULSE_LENGTH : self._PopUpWindow._on_rightclick(event, entry))
-    EntryPulseLengths.bind("<ButtonRelease-3>", lambda event, 
+    EntryPulseLengths.bind("<Leave>", lambda event, 
         entry = PULSE_LENGTH  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Sampling duration
@@ -1063,9 +1081,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
         (fSamplingDuration.register(_valdiate_ValueEntries),'%S','%d'))        
     EntrySamplingDuration.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntrySamplingDuration.bind("<Button-3>", lambda event, 
+    EntrySamplingDuration.bind("<Enter>", lambda event, 
         entry = SAMPLING_DURATION : self._PopUpWindow._on_rightclick(event, entry))
-    EntrySamplingDuration.bind("<ButtonRelease-3>", lambda event, 
+    EntrySamplingDuration.bind("<Leave>", lambda event, 
         entry = SAMPLING_DURATION  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Cycles
@@ -1081,9 +1099,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCycle.bind("<Button-3>", lambda event, 
+    EntryCycle.bind("<Enter>", lambda event, 
         entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCycle.bind("<ButtonRelease-3>", lambda event, 
+    EntryCycle.bind("<Leave>", lambda event, 
         entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # CurrentRange
@@ -1099,9 +1117,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCurrentRange.bind("<Button-3>", lambda event, 
+    EntryCurrentRange.bind("<Enter>", lambda event, 
         entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCurrentRange.bind("<ButtonRelease-3>", lambda event, 
+    EntryCurrentRange.bind("<Leave>", lambda event, 
         entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
@@ -1153,9 +1171,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStartVoltage.bind("<Button-3>", lambda event, 
+    EntryStartVoltage.bind("<Enter>", lambda event, 
         entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStartVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStartVoltage.bind("<Leave>", lambda event, 
         entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # StopVoltage
@@ -1171,9 +1189,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryStopVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryStopVoltage.bind("<Button-3>", lambda event, 
+    EntryStopVoltage.bind("<Enter>", lambda event, 
         entry = STOP_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryStopVoltage.bind("<ButtonRelease-3>", lambda event, 
+    EntryStopVoltage.bind("<Leave>", lambda event, 
         entry = STOP_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # DeltaV staircase
@@ -1189,9 +1207,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
         (fDeltaVStaircase.register(_valdiate_ValueEntries),'%S','%d'))        
     EntryDeltaVStaircase.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryDeltaVStaircase.bind("<Button-3>", lambda event, 
+    EntryDeltaVStaircase.bind("<Enter>", lambda event, 
         entry = DELTA_V_STAIRCASE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryDeltaVStaircase.bind("<ButtonRelease-3>", lambda event, 
+    EntryDeltaVStaircase.bind("<Leave>", lambda event, 
         entry = DELTA_V_STAIRCASE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # DeltaV peak
@@ -1207,9 +1225,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryDeltaVPeak.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryDeltaVPeak.bind("<Button-3>", lambda event, 
+    EntryDeltaVPeak.bind("<Enter>", lambda event, 
         entry = DELTA_V_PEAK : self._PopUpWindow._on_rightclick(event, entry))
-    EntryDeltaVPeak.bind("<ButtonRelease-3>", lambda event, 
+    EntryDeltaVPeak.bind("<Leave>", lambda event, 
         entry = DELTA_V_PEAK  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Duty cycle
@@ -1225,9 +1243,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryPulseLengths.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryPulseLengths.bind("<Button-3>", lambda event, 
+    EntryPulseLengths.bind("<Enter>", lambda event, 
         entry = DUTY_CYCLE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryPulseLengths.bind("<ButtonRelease-3>", lambda event, 
+    EntryPulseLengths.bind("<Leave>", lambda event, 
         entry = DUTY_CYCLE : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Sampling duration
@@ -1243,9 +1261,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
         (fSamplingDuration.register(_valdiate_ValueEntries),'%S','%d'))        
     EntrySamplingDuration.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntrySamplingDuration.bind("<Button-3>", lambda event, 
+    EntrySamplingDuration.bind("<Enter>", lambda event, 
         entry = SAMPLING_DURATION : self._PopUpWindow._on_rightclick(event, entry))
-    EntrySamplingDuration.bind("<ButtonRelease-3>", lambda event, 
+    EntrySamplingDuration.bind("<Leave>", lambda event, 
         entry = SAMPLING_DURATION : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Cycles
@@ -1261,9 +1279,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCycle.bind("<Button-3>", lambda event, 
+    EntryCycle.bind("<Enter>", lambda event, 
         entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCycle.bind("<ButtonRelease-3>", lambda event, 
+    EntryCycle.bind("<Leave>", lambda event, 
         entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # CurrentRange
@@ -1279,9 +1297,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
         register(_valdiate_ValueEntries),'%S','%d'))        
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryCurrentRange.bind("<Button-3>", lambda event, 
+    EntryCurrentRange.bind("<Enter>", lambda event, 
         entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCurrentRange.bind("<ButtonRelease-3>", lambda event, 
+    EntryCurrentRange.bind("<Leave>", lambda event, 
         entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
@@ -1330,9 +1348,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
         variable= self._iFixedWEPotential, onvalue= True, offvalue= False)        
     EntryFixedWEPotential.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryFixedWEPotential.bind("<Button-3>", lambda event, 
+    EntryFixedWEPotential.bind("<Enter>", lambda event, 
         entry = FIXED_WE_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
-    EntryFixedWEPotential.bind("<ButtonRelease-3>", lambda event, 
+    EntryFixedWEPotential.bind("<Leave>", lambda event, 
         entry = FIXED_WE_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Mains filter
@@ -1347,9 +1365,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
         onvalue= True, offvalue= False)        
     EntryMainsFilter.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryMainsFilter.bind("<Button-3>", lambda event, 
+    EntryMainsFilter.bind("<Enter>", lambda event, 
         entry = MAINS_FILTER : self._PopUpWindow._on_rightclick(event, entry))
-    EntryMainsFilter.bind("<ButtonRelease-3>", lambda event, 
+    EntryMainsFilter.bind("<Leave>", lambda event, 
         entry = MAINS_FILTER  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Sinc 2 oversampling rate
@@ -1365,9 +1383,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryOsrSinc2.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryOsrSinc2.bind("<Button-3>", lambda event, 
+    EntryOsrSinc2.bind("<Enter>", lambda event, 
         entry = SINC2_OVERSAMPLING : self._PopUpWindow._on_rightclick(event, entry))
-    EntryOsrSinc2.bind("<ButtonRelease-3>", lambda event, 
+    EntryOsrSinc2.bind("<Leave>", lambda event, 
         entry = SINC2_OVERSAMPLING  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Sinc 3 oversmapling rate
@@ -1383,9 +1401,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryOsrSinc3.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryOsrSinc3.bind("<Button-3>", lambda event, 
+    EntryOsrSinc3.bind("<Enter>", lambda event, 
         entry = SINC3_OVERSAMPLING : self._PopUpWindow._on_rightclick(event, entry))
-    EntryOsrSinc3.bind("<ButtonRelease-3>", lambda event, 
+    EntryOsrSinc3.bind("<Leave>", lambda event, 
         entry = SINC3_OVERSAMPLING  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Enable optimizer
@@ -1400,9 +1418,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
                                  onvalue= True, offvalue= False)        
     EntryOptimizer.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryOptimizer.bind("<Button-3>", lambda event, 
+    EntryOptimizer.bind("<Enter>", lambda event, 
         entry = ENABLE_OPTIMIZER : self._PopUpWindow._on_rightclick(event, entry))
-    EntryOptimizer.bind("<ButtonRelease-3>", lambda event, 
+    EntryOptimizer.bind("<Leave>", lambda event, 
         entry = ENABLE_OPTIMIZER  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Low performance mode
@@ -1417,9 +1435,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
         onvalue= True, offvalue= False)        
     EntryLpMode.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
-    EntryLpMode.bind("<Button-3>", lambda event, 
+    EntryLpMode.bind("<Enter>", lambda event, 
         entry = LOW_PERFORMANCE_MODE : self._PopUpWindow._on_rightclick(event, entry))
-    EntryLpMode.bind("<ButtonRelease-3>", lambda event, 
+    EntryLpMode.bind("<Leave>", lambda event, 
         entry = LOW_PERFORMANCE_MODE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
 def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
@@ -1461,7 +1479,7 @@ def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
     fTemplate = Frame(fWindowLeft, style="fWidget.TFrame")
     fTemplate.pack(fill= X, side= TOP, expand= FALSE, padx= 5, pady= 5)
 
-    TextTemplate = Label(fTemplate, text= dic_parameters[TEMPLATE_NAME][0], 
+    TextTemplate = Label(fTemplate, text= dic_parameters[TEMPLATE_NAME_SEQUENCE][0], 
         width= TEXTBOX_WIDTH, style= "fLabelGeneralBold.TLabel")
     TextTemplate.pack(side= LEFT, padx= 5, pady= 5)
 
@@ -1469,10 +1487,10 @@ def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
         width= ENTRY_WIDTH)        
     EntryTemplate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)   
 
-    EntryTemplate.bind("<Button-3>", lambda event, 
-        entry = TEMPLATE_NAME : self._PopUpWindow._on_rightclick(event, entry))
-    EntryTemplate.bind("<ButtonRelease-3>", lambda event, 
-        entry = TEMPLATE_NAME  : self._PopUpWindow._on_rightclick_release(event, entry))
+    EntryTemplate.bind("<Enter>", lambda event, 
+        entry = TEMPLATE_NAME_SEQUENCE : self._PopUpWindow._on_rightclick(event, entry))
+    EntryTemplate.bind("<Leave>", lambda event, 
+        entry = TEMPLATE_NAME_SEQUENCE  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Add frame for sequence cycles
     fCycles = Frame(fWindowLeft, style="fWidget.TFrame")
@@ -1487,9 +1505,9 @@ def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
         register(_valdiate_ValueEntriesPositive),'%S','%d'))        
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5) 
 
-    EntryCycle.bind("<Button-3>", lambda event, 
+    EntryCycle.bind("<Enter>", lambda event, 
         entry = SEQUENCE_CYCLES : self._PopUpWindow._on_rightclick(event, entry))
-    EntryCycle.bind("<ButtonRelease-3>", lambda event, 
+    EntryCycle.bind("<Leave>", lambda event, 
         entry = SEQUENCE_CYCLES  : self._PopUpWindow._on_rightclick_release(event, entry))
 
     # Create a canvas for the left and right window
@@ -1528,13 +1546,31 @@ def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
         command= lambda : self._clickButton(BUTTON_DELETE_TEMP_SEQ))        
     ButtonDelete.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
+    ButtonDelete.bind("<Enter>", lambda event, 
+        entry = DELETE_SEQUENCE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+    
+    ButtonDelete.bind("<Leave>", lambda event, 
+        entry = DELETE_SEQUENCE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+
     ButtonLoad = Button(fUtility, image=self._IconLoadSequence, 
         command= lambda : self._clickButton(BUTTON_LOAD_TEMP_SEQ))        
     ButtonLoad.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
+    ButtonLoad.bind("<Enter>", lambda event, 
+        entry = LOAD_SEQUENCE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+    
+    ButtonLoad.bind("<Leave>", lambda event, 
+        entry = LOAD_SEQUENCE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+
     ButtonSave = Button(fUtility, image=self._IconSaveSequence, 
         command= lambda : self._clickButton(BUTTON_SAVE_TEMP_SEQ))        
     ButtonSave.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
+
+    ButtonSave.bind("<Enter>", lambda event, 
+        entry = SAVE_SEQUENCE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+    
+    ButtonSave.bind("<Leave>", lambda event, 
+        entry = SAVE_SEQUENCE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
 
 def _update_CentralFrame_Sequence_Add(self, strMethod : str) -> None:
     """
@@ -1632,7 +1668,7 @@ def _update_CentralFrame_Sequence_Add(self, strMethod : str) -> None:
         style= "fLabelGeneralBold.TLabel", width= TEXTBOX_WIDTH_SEQ_NAME)
     TextTemplate.pack(side= TOP, padx= 5)
 
-    TextTemplate = Label(fUsedTemplate, text= "Undefiend", 
+    TextTemplate = Label(fUsedTemplate, text= "Undefined", 
         style= "fLabelGeneral.TLabel", width= TEXTBOX_WIDTH_SEQ_NAME)
     TextTemplate.pack(side= TOP, padx= 5)
 

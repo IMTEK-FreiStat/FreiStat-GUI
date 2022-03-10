@@ -18,12 +18,11 @@ from tkinter import filedialog
 from tkinter import *
 from tkinter.ttk import *
 from typing import Union
-from FreiStat.Data_storage.constants import *
-from FreiStat.Utility.decoder import _decode_LPTIA_Resistor_Size
-from FreiStat.Utility.decoder import _decode_SincXOSR
+from FreiStat.Data_storage.dictionaries import *
 
 # Import internal dependencies
 from ..Data_Storage.constants import *
+from ..Utility import _decodeParameters
 
 
 def _openFileExplorer(self, iCommand : int) -> str :
@@ -46,12 +45,18 @@ def _openFileExplorer(self, iCommand : int) -> str :
     strFilePath : str = ""
 
     if (iCommand == BUTTON_LOAD):
+        data = [("All Supported Files(*.fst; *.csv)","*.fst *.csv"),
+                ("FreiStat Template File(*.fst)","*.fst"),
+                ("CSV UTF-8(*.csv)","*.csv")]
         strFilePath = filedialog.askopenfilename(initialdir = os.getcwd(),
+            filetypes= data, defaultextension= data,
             title = "Select a config file")
     elif (iCommand == BUTTON_SAVE):
         strFilePath = os.getcwd()
     elif (iCommand == BUTTON_SAVEAS):
-        f = filedialog.asksaveasfile(initialdir = os.getcwd())
+        data = [("FreiStat Template File(*.fst)","*.fst")]
+        f = filedialog.asksaveasfile(initialdir = os.getcwd(), 
+                filetypes= data, defaultextension= data)
         strFilePath = f.name
        
     return strFilePath
@@ -117,26 +122,26 @@ def _decodeExperimentParameters(self, listExperimentPair : list) \
 
     # Experiment parameters
     listParameterNames : list = [
-        [SEQUENCE_LENGTH, SEQUENCE_LENGTH_STR, SEQUENCE_LENGTH_U],
-        [BASE_POTENTIAL, BASE_POTENTIAL_STR, BASE_POTENTIAL_U],
-        [START_POTENTIAL, START_POTENTIAL_STR, START_POTENTIAL_U],
-        [STOP_POTENTIAL, STOP_POTENTIAL_STR, STOP_POTENTIAL_U],
-        [LOWER_POTENTIAL, LOWER_POTENTIAL_STR, LOWER_POTENTIAL_U],
-        [UPPER_POTENTIAL, UPPER_POTENTIAL_STR, UPPER_POTENTIAL_U],
-        [POTENTIAL_STEPS, POTENTIAL_STEPS_STR, POTENTIAL_STEPS_U],
-        [PULSE_LENGTH, PULSE_LENGTH_STR, PULSE_LENGTH_U],
-        [SAMPLING_RATE, SAMPLING_RATE_STR, SAMPLING_RATE_U],
-        [SAMPLING_DURATION, SAMPLING_DURATION_STR, SAMPLING_DURATION_U],
-        [STEP_SIZE, STEP_SIZE_STR, STEP_SIZE_U],
-        [SCAN_RATE, SCAN_RATE_STR, SCAN_RATE_U],
-        [DELTA_V_STAIRCASE, DELTA_V_STAIRCASE_STR, DELTA_V_STAIRCASE_U],
-        [DELTA_V_PEAK, DELTA_V_PEAK_STR, DELTA_V_PEAK_U],
-        [CYCLE, CYCLE_STR, CYCLE_U],
-        [LPTIA_RTIA_SIZE, LPTIA_RTIA_SIZE_STR, LPTIA_RTIA_SIZE_U],
-        [FIXED_WE_POTENTIAL, FIXED_WE_POTENTIAL_STR, FIXED_WE_POTENTIAL_U],
-        [MAINS_FILTER, MAINS_FILTER_STR, MAINS_FILTER_U],
-        [SINC2_OVERSAMPLING, SINC2_OVERSAMPLING_STR, SINC2_OVERSAMPLING_U],
-        [SINC3_OVERSAMPLING, SINC3_OVERSAMPLING_STR, SINC3_OVERSAMPLING_U]
+        [SEQUENCE_LENGTH, dic_configParameters[SEQUENCE_LENGTH][0], SEQUENCE_LENGTH_U],
+        [BASE_POTENTIAL, dic_configParameters[BASE_POTENTIAL][0], BASE_POTENTIAL_U],
+        [START_POTENTIAL, dic_configParameters[START_POTENTIAL][0], START_POTENTIAL_U],
+        [STOP_POTENTIAL, dic_configParameters[STOP_POTENTIAL][0], STOP_POTENTIAL_U],
+        [LOWER_POTENTIAL, dic_configParameters[LOWER_POTENTIAL][0], LOWER_POTENTIAL_U],
+        [UPPER_POTENTIAL, dic_configParameters[UPPER_POTENTIAL][0], UPPER_POTENTIAL_U],
+        [POTENTIAL_STEPS, dic_configParameters[POTENTIAL_STEPS][0], POTENTIAL_STEPS_U],
+        [PULSE_LENGTH, dic_configParameters[PULSE_LENGTH][0], PULSE_LENGTH_U],
+        [SAMPLING_RATE, dic_configParameters[SAMPLING_RATE][0], SAMPLING_RATE_U],
+        [SAMPLING_DURATION, dic_configParameters[SAMPLING_DURATION][0], SAMPLING_DURATION_U],
+        [STEP_SIZE, dic_configParameters[STEP_SIZE][0], STEP_SIZE_U],
+        [SCAN_RATE, dic_configParameters[SCAN_RATE][0], SCAN_RATE_U],
+        [DELTA_V_STAIRCASE, dic_configParameters[DELTA_V_STAIRCASE][0], DELTA_V_STAIRCASE_U],
+        [DELTA_V_PEAK, dic_configParameters[DELTA_V_PEAK][0], DELTA_V_PEAK_U],
+        [CYCLE, dic_configParameters[CYCLE][0], CYCLE_U],
+        [LPTIA_RTIA_SIZE, dic_configParameters[LPTIA_RTIA_SIZE][0], LPTIA_RTIA_SIZE_U],
+        [FIXED_WE_POTENTIAL, dic_configParameters[FIXED_WE_POTENTIAL][0], FIXED_WE_POTENTIAL_U],
+        [MAINS_FILTER, dic_configParameters[MAINS_FILTER][0], MAINS_FILTER_U],
+        [SINC2_OVERSAMPLING, dic_configParameters[SINC2_OVERSAMPLING][0], SINC2_OVERSAMPLING_U],
+        [SINC3_OVERSAMPLING, dic_configParameters[SINC3_OVERSAMPLING][0], SINC3_OVERSAMPLING_U]
     ]
 
     # Seach list of experiment parameters for entry
@@ -169,84 +174,8 @@ def _decodeOptimizerParameters(self, listExperimentParameters : list) -> list:
         List containing the decoded experiment parameters.
 
     """
-    # Loop over the whole list
-    for iIndex in range(len(listExperimentParameters)):
-        if (listExperimentParameters[iIndex][0] == BASE_POTENTIAL):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == START_POTENTIAL):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == STOP_POTENTIAL):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == LOWER_POTENTIAL):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == UPPER_POTENTIAL):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == POTENTIAL_STEPS):
-            listExperimentParameters[iIndex][1] = [x / 1000.0 for x in 
-                listExperimentParameters[iIndex][1]]
-
-        elif (listExperimentParameters[iIndex][0] == PULSE_LENGTH):
-            listExperimentParameters[iIndex][1] = [x / 1000.0 for x in 
-                listExperimentParameters[iIndex][1]]
-
-        elif (listExperimentParameters[iIndex][0] == DELTA_V_STAIRCASE):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == DELTA_V_PEAK):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == STEP_SIZE):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == SCAN_RATE):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == SAMPLING_RATE):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == SAMPLING_DURATION):
-            listExperimentParameters[iIndex][1] = \
-                listExperimentParameters[iIndex][1] / 1000.0
-
-        elif (listExperimentParameters[iIndex][0] == LPTIA_RTIA_SIZE):
-            listExperimentParameters[iIndex][1] = 0.9 / \
-                _decode_LPTIA_Resistor_Size(listExperimentParameters[iIndex][1])
-
-        elif (listExperimentParameters[iIndex][0] == FIXED_WE_POTENTIAL):
-            if (listExperimentParameters[iIndex][1] == 1):
-                listExperimentParameters[iIndex][1] = True
-            else :
-                listExperimentParameters[iIndex][1] = False
-        elif (listExperimentParameters[iIndex][0] == MAINS_FILTER):
-            if (listExperimentParameters[iIndex][1] == 1):
-                listExperimentParameters[iIndex][1] = True
-            else :
-                listExperimentParameters[iIndex][1] = False
-
-        elif (listExperimentParameters[iIndex][0] == SINC2_OVERSAMPLING):
-            listExperimentParameters[iIndex][1] = \
-                _decode_SincXOSR(listExperimentParameters[iIndex][1], 
-                SINC2_OVERSAMPLING)
-
-        elif (listExperimentParameters[iIndex][0] == SINC3_OVERSAMPLING):
-            listExperimentParameters[iIndex][1] = \
-                _decode_SincXOSR(listExperimentParameters[iIndex][1], 
-                SINC3_OVERSAMPLING)
+    # Decode experiment parameters
+    _decodeParameters(listExperimentParameters)
 
     # Add parameters for optimizer and low performance mode to the list
     listExperimentParameters.append(

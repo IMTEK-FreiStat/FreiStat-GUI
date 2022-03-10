@@ -15,11 +15,16 @@ __email__ = "mark.jasper@imtek.uni-freiburg.de, kieninger@imtek.uni-freiburg.de"
 # Import dependencies
 import os
 import pickle
+import csv
+import ast
 from FreiStat.Data_storage.constants import *
+from FreiStat.Data_storage.dictionaries import *
 
 # Import internal dependencies
 from .constants import *
 from .data_storage import DataStorage
+from .dictionaries import *
+from ..Utility import _decodeParameters
 
 class DataHandling:
     """
@@ -63,6 +68,23 @@ class DataHandling:
         """
         # Create data object and append it to the list
         self._listDataObject.append(DataStorage())
+
+        # Set reference to this new Data object
+        self._currentDataObject = len(self._listDataObject) - 1
+
+    def import_DataObject(self, dataStorage : DataStorage) -> None:
+        """
+        Description
+        -----------
+        Add dataStorage object to internal list 
+        
+        Parameters
+        ----------
+        `dataStorage` : DataStorage
+            Reference to the DataStorage object
+
+        """        
+        self._listDataObject.append(dataStorage)
 
         # Set reference to this new Data object
         self._currentDataObject = len(self._listDataObject) - 1
@@ -125,6 +147,30 @@ class DataHandling:
             # Jump to previous object
             self._currentDataObject -= 1
 
+    def export_Templates(self, strFilePath : str, dataStorageList : list) -> None:
+        """
+        Description
+        -----------
+        Export the current FreiStat configuration as an external file.     
+        
+        Parameters
+        ----------
+        `strFilePath` : string
+            String containing the location where the data should be stored
+
+        `dataStorageList` : list
+            List containing the references to the DataStroage objects which 
+            should be exported
+
+        """
+        with open(strFilePath, "wb") as output:
+            # Write data objects as data file into the chosen directory.
+            pickle.dump(dataStorageList, output, 
+                pickle.HIGHEST_PROTOCOL)
+
+        # Change back to base directory
+        os.chdir(self._strRootPath)
+
     def export_Configuration(self, strFilePath : str) -> None:
         """
         Description
@@ -145,7 +191,7 @@ class DataHandling:
         # Change back to base directory
         os.chdir(self._strRootPath)
 
-    def import_Configuration(self, strFilePath : str) -> None:
+    def import_Configuration(self, strFilePath : str) -> list:
         """
         Description
         -----------
@@ -156,17 +202,67 @@ class DataHandling:
         `strFilePath` : string
             String containing the location where the data should be stored
 
+        Return
+        ------
+        Returns list containing loaded dataStorage objects
+
         """
         # Load data storage object
         try:
-            with open(strFilePath, "rb") as input:
-                # Overrite data objects with loaded data objects
-                self._listDataObject = pickle.load(input)   
+            if (".fst" in strFilePath):
+                with open(strFilePath, "rb") as input:
+                    # Temporary save loaded dataStorage objects from import to
+                    # enable management through the Template Management
+                    listDataStorage = pickle.load(input)   
 
-            # Close input reader
-            input.close      
+                # Close input reader
+                input.close   
+
+                return listDataStorage   
+
+            elif (".csv" in strFilePath):
+                # Create data storage object
+                tempDataStorage = DataStorage()
+
+                # Create temp list for experiment parameters
+                listTempExPara : list = []
+
+                # Open .csv-file
+                with open(strFilePath) as input:
+                    # Temporary save loaded .csv file and convert it into an 
+                    # data storage object
+                    csvFile = csv.reader(input, delimiter= ",")   
+
+                    # Read and set experiment type in template
+                    tempDataStorage.save_ExperimentType(next(csvFile)[1])
+
+                    # Loop over all rows
+                    for row in csvFile :
+                        # Loop over the dictionary values
+                        for key, values in dic_configParameters.items():
+                            if (row[0] == values[1]):
+
+                                listTempExPara.append([key, ast.literal_eval(row[1])])
+
+                # Close input reader
+                input.close   
+
+                # Convert experiment parameters
+                _decodeParameters(listTempExPara)
+
+                # Save experiment parameters    
+                tempDataStorage.save_ExperimentParameters(listTempExPara)        
+
+                # Give template a name
+                tempDataStorage.save_TemplateName("\"Insert Template Name\"")
+                
+                # Append object to list
+                listDataStorage : list = [tempDataStorage]
+
+                return listDataStorage 
         except:
-            pass
+            # Return empty list
+            return []
         
     def export_Settings(self) -> None:
         """
@@ -365,6 +461,34 @@ class DataHandling:
             
         """
         self._preferences = listPreferences
+
+    def get_DataStorages(self) -> list:
+        """
+        Description
+        -----------
+        Return the list of stored data storage objects
+
+        Return
+        ------
+        `listDataStorages` : list
+            List containing data storage objects
+            
+        """
+        return self._listDataObject
+
+    def set_DataStorages(self, listDataStorages : list) -> None:
+        """
+        Description
+        -----------
+        Overwrite the list of stored data storage objects
+
+        Parameters
+        ----------
+        `listDataStorages` : list
+            List containing data storage objects
+            
+        """
+        self._listDataObject = listDataStorages
 
     def get_SequenceLength(self) -> int:
         """

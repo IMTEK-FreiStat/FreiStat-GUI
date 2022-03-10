@@ -62,6 +62,7 @@ MW_Y_POSITION           = 900           # Size of the main window in Y direction
 |   Constant              Value                     Meaning
 -----------------------------------------------------------------------------"""
 TEXTBOX_WIDTH           = 25            # Width of a textbox in the interface
+TEXTBOX_WIDTH_SMALL     = 15            # Width of a textbox in the interface
 TEXTBOX_WIDTH_SEQ       = 10            # Width of a textbox in the sequence mode
 TEXTBOX_WIDTH_SEQ_NAME  = 15            # Width of a template textbox in the sequence mode
 TEXTBOX_WIDTH_SETTINGS  = 50            # Width of a textbox in the settings
@@ -172,6 +173,7 @@ SET_CLIENT_PORT_VALUE   = "20000"       # Default value for the client port
 |   Constant              Value                     Meaning
 -----------------------------------------------------------------------------"""
 TEMPLATE_NAME           = "pTN"         # Parameter template name
+TEMPLATE_NAME_SEQUENCE  = "pTNS"        # Parameter template name sequence
 SEQUENCE_CYCLES         = "pSC"         # Parameter sequence cycle
 ADVANCED_SETTING        = "pAS"         # Parameter advanced setting
 ENABLE_OPTIMIZER        = "pEO"         # Parameter enable optimizer
@@ -214,3 +216,17 @@ SINGLE_MODE             = "hSM"         # Single Mode
 SEQUENCE_MODE           = "hSEM"        # Sequence Mode
 TEMPLATES               = "hT"          # Templates
 DATA_EXPORT             = "hDE"         # Date export
+LOAD_BUTTON             = "hLB"         # Load button
+SAVE_BUTTON             = "hSB"         # Save button
+DELETE_BUTTON           = "hDB"         # Delete button
+LOAD_SEQUENCE_BUTTON    = "hLSB"        # Load sequence button
+SAVE_SEQUENCE_BUTTON    = "hSSB"        # Save seqeunce button
+DELETE_SEQUENCE_BUTTON  = "hDSB"        # Delete sequence button
+
+"""-----------------------------------------------------------------------------
+| Template Management : Command ID
+|   
+|   Constant              Value
+-----------------------------------------------------------------------------"""
+IMPORT_TEMPLATE         = 1             
+EXPORT_TEMPLATE         = 2

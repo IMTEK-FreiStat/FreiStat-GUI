@@ -45,6 +45,7 @@ class DataStorage:
 
         """
         # Initalize class variable
+        self._strTemplateName : str = ""
         self._strElectrochemicalMethod : str = ""
         self._listStoredData : list = []
         self._listExperimentParameters : list = []

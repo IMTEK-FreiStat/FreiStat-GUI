@@ -42,13 +42,19 @@ def _StyleConfig(self) -> None:
     style.configure("fPlotBand.TFrame", background= "gray80")
     style.configure("fWidget.TFrame", background= "gray95")
     style.configure("fWidgetButton.TFrame", background= "gray70")
-    
+
     style.configure("fFocusFrame.TFrame", background= "orange")
+    style.configure("fSelectedFrame.TFrame", background= "#00CC00")
+    style.configure("fUnselectedFrame.TFrame", background= "red")
 
     style.configure("fPopUp.TFrame", background= "white")
+    style.configure("fPopUpTemplate.TFrame", background= "gray95")
 
     # Buttons
     style.configure("fButtonGeneral.TButton", font= "Arial 16 bold")
+
+    # Checkbutton
+    style.configure("fCheckButtonGeneral.TCheckbutton", background= "white")
 
     # Labels
     style.configure("fLabelGeneralWhite.TLabel", font= "Arial 16 bold", 
