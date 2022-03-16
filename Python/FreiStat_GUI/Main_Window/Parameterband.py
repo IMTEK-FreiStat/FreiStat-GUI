@@ -103,7 +103,8 @@ def _update_PrameterbandFrame(self, parentFrame : Frame) -> None:
                                    style= "fLabelGeneral.TLabel")
         TextExperimentType.pack(side= TOP, padx= 5, pady= 5)
 
-def _update_PrameterbandFrame_Template(self, parentFrame : Frame) -> None:
+def _update_PrameterbandFrame_Template(self, iCommandID : int ,
+                                       parentFrame : Frame) -> None:
     """
     Description
     -----------
@@ -111,6 +112,10 @@ def _update_PrameterbandFrame_Template(self, parentFrame : Frame) -> None:
 
     Parameters
     ----------
+    `iCommandID` : int
+        Integer encoding a command to either show  sequence templates or method
+        templates.
+
     `parentFrame` : Frame
         Parent frame in which the parameter band frame is embedded
 
@@ -144,60 +149,23 @@ def _update_PrameterbandFrame_Template(self, parentFrame : Frame) -> None:
     fTemplates = Frame(parentFrame, style= "fWidget.TFrame")
     fTemplates.pack(fill= X, side= TOP, expand= FALSE, padx= 5, pady= 5)
 
-    # Loop over all templates
-    for iIndex in range(self._dataHandling.get_SequenceLength()):
-        self._TemplateListBox.insert(END, self._dataHandling.get_ExperimentType() + 
-            " - " + self._dataHandling.get_TemplateName())
-
-        # Move to the next data object
-        self._dataHandling.move_next_DataObject()
-
-def _update_PrameterbandFrame_TemplateSequence(self, parentFrame : Frame) -> None:
-    """
-    Description
-    -----------
-    Method for updating the parameter band to display all stored sequence
-    templates.
-
-    Parameters
-    ----------
-    `parentFrame` : Frame
-        Parent frame in which the parameter band frame is embedded
-
-    """
-    # Clear present widgets
-    self._clearFrame(parentFrame)   
-
-    # Move to the first data object
-    self._dataHandling.move_first_DataObject()
-
-    # Create listbox
-    self._TemplateListBox = Listbox(parentFrame, width= TEXTBOX_WIDTH, 
-                                    font= "Arial 10 bold")
-
-    # Bind select event to list box
-    self._TemplateListBox.bind('<<ListboxSelect>>', self._onSelect)
-
-    # Add scrollbars 
-    ScrollbarXTerminal = Scrollbar(parentFrame, orient='horizontal', 
-                                   command=self._TemplateListBox.xview)
-    ScrollbarYTerminal = Scrollbar(parentFrame, orient='vertical', 
-                                   command=self._TemplateListBox.yview)
-    ScrollbarYTerminal.pack(side= RIGHT, expand=False, fill=Y) 
-    self._TemplateListBox.config(xscrollcommand=ScrollbarXTerminal.set, 
-                                 yscrollcommand=ScrollbarYTerminal.set)
-    self._TemplateListBox.pack(side= TOP, expand=True, fill='both', 
-                               padx= 5, pady= 5)
-    ScrollbarXTerminal.pack(side= BOTTOM, expand=False, fill=X)   
-
-    # Create frame the templates
-    fTemplates = Frame(parentFrame, style= "fWidget.TFrame")
-    fTemplates.pack(fill= X, side= TOP, expand= FALSE, padx= 5, pady= 5)
+    # Create set based on command ID
+    if (iCommandID == BUTTON_LOAD_TEMPLATE):
+        # Check if currently in sequnece mode to limit method selection
+        if (self._iNavIndex ==  NI_SEQ_MODE):
+            tempSet = {self._strMethod}
+        else : 
+            tempSet = {CA, OCP, LSV, CV, NPV, DPV, SWV}
+    elif (iCommandID == BUTTON_LOAD_TEMP_SEQ):
+        tempSet = {SEQUENCE}
+    else :
+        tempSet = {}
 
     # Loop over all templates
     for iIndex in range(self._dataHandling.get_SequenceLength()):
-        self._TemplateListBox.insert(END, self._dataHandling.get_ExperimentType() + 
-            " - " + self._dataHandling.get_TemplateName())
+        if (self._dataHandling.get_ExperimentType() in tempSet):
+            self._TemplateListBox.insert(END, self._dataHandling.get_ExperimentType() + 
+                " - " + self._dataHandling.get_TemplateName())
 
         # Move to the next data object
         self._dataHandling.move_next_DataObject()
@@ -217,9 +185,6 @@ def _onSelect(self, event):
     """
     widget = event.widget
 
-    # Move to the first data object
-    self._dataHandling.move_first_DataObject()
-
     # Check if an item can be selected
     if (len(widget.curselection()) == 0):
         return
@@ -237,7 +202,7 @@ def _onSelect(self, event):
         frame = self._fCentralFrame
     # Sequence mode
     elif (self._iNavIndex == NI_SEQ_MODE):
-        frame = self._fOptionsSequence
+        frame = self._fOptionsSequence               
 
     for iIndex in range(self._dataHandling.get_SequenceLength()):
         if (self._dataHandling.get_TemplateName() == strTemplateName):
@@ -286,3 +251,16 @@ def _onSelect(self, event):
             break
         # Move to the next data object
         self._dataHandling.move_next_DataObject()
+
+    if (self._iNavIndex == NI_SEQ_MODE):
+        frame = self._fOptionsSequence
+
+        if (self._dataHandling.get_ExperimentType() != SEQUENCE):
+            # Move back to the sequence object
+            for iIndex in range(self._dataHandling.get_SequenceLength()):
+                if (self._dataHandling.get_TemplateName() == self._strTemplateSeq.get()):
+                    # Update parameter band
+                    self._update_PrameterbandFrame(self._fParameterBand)
+                    return
+                # Move to the next data object
+                self._dataHandling.move_next_DataObject() 

@@ -34,24 +34,32 @@ def _clickSelect(self, iIndex : int) -> None:
     """   
     if (self._buttonList[iIndex][1]):
         # Update frame color
-        Widget.nametowidget(self._PopUpRoot, self._buttonList[iIndex][0].winfo_parent()). \
-        configure(style= "fUnselectedFrame.TFrame")
+        #Widget.nametowidget(self._PopUpRoot, self._buttonList[iIndex][0].winfo_parent()). \
+        #configure(style= "fUnselectedFrame.TFrame")
 
         # Change button text
-        self._buttonList[iIndex][0].configure(text= "Unselected")
+        self._buttonList[iIndex][0].configure(text= "Show")
 
         # Change select variable
         self._buttonList[iIndex][1] = False
     else :
         # Update frame color
-        Widget.nametowidget(self._PopUpRoot, self._buttonList[iIndex][0].winfo_parent()). \
-        configure(style= "fSelectedFrame.TFrame")
+        #Widget.nametowidget(self._PopUpRoot, self._buttonList[iIndex][0].winfo_parent()). \
+        #configure(style= "fSelectedFrame.TFrame")
 
         # Change button text
-        self._buttonList[iIndex][0].configure(text= "Selected")
+        self._buttonList[iIndex][0].configure(text= "Hide")
 
         # Change select variable
         self._buttonList[iIndex][1] = True
+
+    if (self._buttonList[iIndex][1] == True):
+        # Show experiment parameters
+        self._templateFrameList[iIndex].pack(fill= "both", side= "top", padx= 1, pady= 5)
+    else :
+        # Hide experiment parameters
+        self._templateFrameList[iIndex].pack_forget()
+
 
 def _clickCheckButton(self, iIndex : int) -> None:
     """
@@ -65,12 +73,8 @@ def _clickCheckButton(self, iIndex : int) -> None:
         Integer encoding the currently clicked checkbutton
 
     """
-    if (self._templateList[iIndex].get() == 0):
-        # Hide experiment parameters
-        self._templateFrameList[iIndex].pack_forget()
-    else :
-        # Show experiment parameters
-        self._templateFrameList[iIndex].pack(fill= "both", side= "top", padx= 1, pady= 5)
+    # Deprecated
+    pass
 
 def _clickImport(self) -> None:
     """
@@ -83,17 +87,15 @@ def _clickImport(self) -> None:
     datastorageList : list = []
 
     # Loop over all templates
-    for iIndex in range(len(self._buttonList)):
+    for iIndex in range(len(self._templateList)):
         # Check if method was selected
-        if (self._buttonList[iIndex][1]):
+        if (self._templateList[iIndex].get()):
             # Update template name
-            self._listDataStorage[iIndex].save_TemplateName(self._templateNameList[iIndex].get())
+            self._listDataStorage[iIndex].save_TemplateName(
+                self._templateNameList[iIndex].get())
 
             datastorageList.append(self._listDataStorage[iIndex])
             
-            
-
-
     # Check if template name is already used
     for iIndex in range(self._dataHandling.get_SequenceLength()):
         for jIndex in range(len(datastorageList)):
@@ -122,9 +124,13 @@ def _clickExport(self) -> None:
     datastorageList : list = []
 
     # Loop over all templates
-    for iIndex in range(len(self._buttonList)):
+    for iIndex in range(len(self._templateList)):
         # Check if method was selected
-        if (self._buttonList[iIndex][1]):
+        if (self._templateList[iIndex].get()):
+            # Update template name
+            self._listDataStorage[iIndex].save_TemplateName(
+                self._templateNameList[iIndex].get())
+
             datastorageList.append(self._listDataStorage[iIndex])
 
     # Export templates

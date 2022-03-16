@@ -96,7 +96,6 @@ class FreiStatInterface():
     from .Parameterband import _create_ParameterbandFrame
     from .Parameterband import _update_PrameterbandFrame
     from .Parameterband import _update_PrameterbandFrame_Template
-    from .Parameterband import _update_PrameterbandFrame_TemplateSequence
     from .Parameterband import _onSelect
 
     from .Plotband import _create_PlotbandFrame
@@ -223,8 +222,9 @@ class FreiStatInterface():
         # Create instance of the data handling
         self._dataHandling = DataHandling(self._strRootPath)
 
-        # Create base for PopUp windoes
+        # Create base for PopUp windows
         self._PopUpWindow = FreiStatPopUp(iCenterX, iCenterY)
+        self._PopUpWindowTooltip = FreiStatPopUp(iCenterX, iCenterY)
 
         # Crfeate the different sub frames inside the main window
         # Ribbon at the most top
@@ -239,7 +239,7 @@ class FreiStatInterface():
 
         # Parameter band the right side
         self._create_ParameterbandFrame(self._Root)
-        self._update_PrameterbandFrame_Template(self._fParameterBand)
+        self._update_PrameterbandFrame_Template(BUTTON_LOAD_TEMPLATE, self._fParameterBand)
 
         # Central frame in the middle
         self._create_CentralFrame(self._Root)

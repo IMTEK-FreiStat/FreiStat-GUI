@@ -48,6 +48,7 @@ def _StyleConfig(self) -> None:
     style.configure("fUnselectedFrame.TFrame", background= "red")
 
     style.configure("fPopUp.TFrame", background= "white")
+    style.configure("fPopUpSunken.TFrame", background= "white", relief= SUNKEN)
     style.configure("fPopUpTemplate.TFrame", background= "gray95")
 
     # Buttons
@@ -63,6 +64,8 @@ def _StyleConfig(self) -> None:
                     background= "white")
     style.configure("fLabelGeneralWhiteSmall.TLabel", font= "Arial 10", 
                     background= "white")
+    style.configure("fLabelGeneralRedSmallBold.TLabel", font= "Arial 10 bold", 
+                    background= "white", foreground= "red")
     style.configure("fLabelGeneralBold.TLabel", font= "Arial 10 bold")
     style.configure("fLabelGeneralBoldLarge.TLabel", font= "Arial 14 bold")
     style.configure("fLabelGeneral.TLabel", font= "Arial 10")
@@ -72,7 +75,7 @@ def _StyleConfig(self) -> None:
     style.configure("fLabelRunning.TLabel", font= "Arial 10 bold", 
                     background= "orange")
     style.configure("fLabelCanceled.TLabel", font= "Arial 10 bold", 
-                    background= "red")
+                    background= "red", )
     style.configure("fLabelCompleted.TLabel", font= "Arial 10 bold", 
                     background= "#00CC00")   
     

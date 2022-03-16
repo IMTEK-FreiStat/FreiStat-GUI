@@ -42,15 +42,15 @@ def _create_RibbonFrame(self, parentFrame: Frame) -> None:
     self._fRibbon.add_cascade(label="File", menu= menuFile)
 
     # Create load button
-    menuFile.add_command(label="Load", command= lambda : 
+    menuFile.add_command(label="Load Templae", command= lambda : 
         self._clickRibbonButton(BUTTON_LOAD))
 
     # Create save button
-    menuFile.add_command(label="Save", command= lambda : 
+    menuFile.add_command(label="Save Template", command= lambda : 
         self._clickRibbonButton(BUTTON_SAVE))
 
     # Create save as ... button
-    menuFile.add_command(label="Save as", command= lambda : 
+    menuFile.add_command(label="Save Template as", command= lambda : 
         self._clickRibbonButton(BUTTON_SAVEAS))
 
     menuFile.add_separator()

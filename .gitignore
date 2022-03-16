@@ -7,3 +7,4 @@ Persistent_Data_Objects/*/*
 preferences
 Python/FreiStat_GUI/backup/backup.fst
 .vscode/*
+Main.py

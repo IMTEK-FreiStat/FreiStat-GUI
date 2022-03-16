@@ -249,13 +249,17 @@ class DataHandling:
 
                 # Convert experiment parameters
                 _decodeParameters(listTempExPara)
+                
+                # Append missing parameters
+                listTempExPara.append([ENABLE_OPTIMIZER, True])
+                listTempExPara.append([LOW_PERFORMANCE_MODE, False])
 
                 # Save experiment parameters    
                 tempDataStorage.save_ExperimentParameters(listTempExPara)        
 
                 # Give template a name
-                tempDataStorage.save_TemplateName("\"Insert Template Name\"")
-                
+                tempDataStorage.save_TemplateName("Insert Template Name here")
+            
                 # Append object to list
                 listDataStorage : list = [tempDataStorage]
 

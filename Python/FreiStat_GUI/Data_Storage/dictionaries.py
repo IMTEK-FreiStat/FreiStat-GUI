@@ -36,7 +36,7 @@ dic_parameters = {
                            "Name under which the settings should be saved."],
     TEMPLATE_NAME_SEQUENCE : ["Sequence template name:",
                            "Name under which the settings for the sequence should be saved."],
-    ADVANCED_SETTING    : ["Advanced settings:", 
+    ADVANCED_SETTING    : ["Show advanced settings:", 
                            "Show/ hide the advanced settings"],
     ENABLE_OPTIMIZER    : ["Enable optimizer:", 
                            "Disabling not recommended. Optimizes: Stepsize, Filter settings"],

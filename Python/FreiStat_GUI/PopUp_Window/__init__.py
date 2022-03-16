@@ -198,8 +198,11 @@ class FreiStatPopUp():
             style= "fLabelGeneralWhiteSmallBold.TLabel")
         TextVersion.pack(side= TOP, padx= 5, pady= 5)
 
-    def PopUp_TemplateHandler(self, iCommandID, dataHandling : DataHandling, 
-                              listDataStorage : list, strFilePath: str) -> None:
+    def PopUp_TemplateHandler(self, 
+                              iCommandID : int, 
+                              dataHandling : DataHandling, 
+                              listDataStorage : list, 
+                              strFilePath: str) -> None:
         """
         Description
         -----------
@@ -368,26 +371,26 @@ class FreiStatPopUp():
             width= TEXTBOX_WIDTH_SMALL, style= "fLabelGeneralWhiteSmallBold.TLabel")
         TextTemplate.pack(side= LEFT, padx= 5, pady= 5)
 
-        strTemplate = StringVar()
-        strTemplate.set(templateName)
-
-        EntryTemplate = Entry(fTemplateGeneralFrame, textvariable= strTemplate, 
-            width= TEXTBOX_WIDTH, style= "fLabelGeneralWhiteSmallBold.TLabel")        
-        EntryTemplate.pack(side= LEFT, pady= 5)   
-
-        self._templateNameList.append(strTemplate)
-        """
-        TextTemplateName= Label(fTemplateGeneralFrame, 
-            text= templateName, 
-            width= TEXTBOX_WIDTH, style= "fLabelGeneralWhiteSmallBold.TLabel")
-        TextTemplateName.pack(side= LEFT, pady= 5)
-        """
         if(not bRecursionCall):
-            # Border frame for button
-            fBorderFrameButton = Frame(fTemplateGeneralFrame, style="fUnselectedFrame.TFrame")
+            # Entry for the template name which is placed in separate frame
+            strTemplate = StringVar()
+            strTemplate.set(templateName)
+
+            fBorderFrameEntry = Frame(fTemplateGeneralFrame, style="fPopUpSunken.TFrame")
+            fBorderFrameEntry.pack(fill= 'both', side= LEFT, pady= 5) 
+
+            EntryTemplate = Entry(fBorderFrameEntry, textvariable= strTemplate, 
+                width= TEXTBOX_WIDTH, style= "fLabelGeneralRedSmallBold.TLabel")        
+            EntryTemplate.pack(side= LEFT, padx= 3)   
+
+            self._templateNameList.append(strTemplate)
+     
+            # Border frame for button 
+            # (deprecated but can be used to give color frame to button)
+            fBorderFrameButton = Frame(fTemplateGeneralFrame, style="fPopUp.TFrame")
             fBorderFrameButton.pack(fill= 'both', side= RIGHT, padx= 2, pady= 2)   
 
-            ButtonShowExpPara = Button(fBorderFrameButton, text= "Unselected",
+            ButtonShowExpPara = Button(fBorderFrameButton, text= "Show",
                 command= lambda index= index: self._clickSelect(index))        
             ButtonShowExpPara.pack(side= RIGHT, fill= Y, padx= 3, pady= 3)
             self._buttonList.append([ButtonShowExpPara, False])
@@ -396,6 +399,10 @@ class FreiStatPopUp():
             fTemplateParameterFrame = Frame(fTemplateFrame, style="fWidget.TFrame")
             self._templateFrameList.append(fTemplateParameterFrame)
         else :
+            EntryTemplate = Label(fTemplateGeneralFrame, text= templateName, 
+                width= TEXTBOX_WIDTH, style= "fLabelGeneralWhiteSmallBold.TLabel")        
+            EntryTemplate.pack(side= LEFT, padx= 3, pady= 2)   
+
             fTemplateParameterFrame = Frame(fTemplateFrame, style="fWidget.TFrame")
             fTemplateParameterFrame.pack(fill= "both", side= "top", padx= 1, pady= 5)
 

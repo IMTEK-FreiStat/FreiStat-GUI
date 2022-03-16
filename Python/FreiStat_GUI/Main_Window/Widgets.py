@@ -76,11 +76,11 @@ def _clickRibbonButton(self, iCommand : int) -> None:
         self._update_CentralFrame_Options(self._fCentralFrame)
 
     elif (iCommand == BUTTON_HELP):
-        #
+        # Open help window
         self._PopUpWindow.PopUp_Help()
 
     elif (iCommand == BUTTON_ABOUT):
-        #
+        # Open about window
         self._PopUpWindow.PopUp_About()
 
 
@@ -114,7 +114,6 @@ def _clickButton(self, iCommand : int) -> None:
                 self._fLiveFeed.pack_forget()
                 self._toolbarFrame.pack_forget()
                 self._fPlotHeadFrame
-
 
         # Update navigation index
         self._iNavIndex = NI_SINGLE_MODE
@@ -424,7 +423,8 @@ def _clickButton(self, iCommand : int) -> None:
 
         elif (iCommand == BUTTON_LOAD_TEMPLATE):
             # Update the parameter frame
-            self._update_PrameterbandFrame_Template(self._fParameterBand)
+            self._update_PrameterbandFrame_Template(BUTTON_LOAD_TEMPLATE,
+                                                    self._fParameterBand)
 
         elif (iCommand == BUTTON_DELETE_TEMPLATE):
             # Delete current template
@@ -467,7 +467,8 @@ def _clickButton(self, iCommand : int) -> None:
 
         elif (iCommand == BUTTON_LOAD_TEMPLATE):
             # Update the parameter frame
-            self._update_PrameterbandFrame_Template(self._fParameterBand)
+            self._update_PrameterbandFrame_Template(BUTTON_LOAD_TEMPLATE,
+                                                    self._fParameterBand)
 
         elif (iCommand == BUTTON_DELETE_TEMPLATE):
             self._clickButton(BUTTON_DELETE)
@@ -525,7 +526,8 @@ def _clickButton(self, iCommand : int) -> None:
 
     elif (iCommand == BUTTON_LOAD_TEMP_SEQ):
         # Update the parameter frame
-        self._update_PrameterbandFrame_Template(self._fParameterBand)
+        self._update_PrameterbandFrame_Template(BUTTON_LOAD_TEMP_SEQ, 
+                                                self._fParameterBand)
 
     elif (iCommand == BUTTON_DELETE_TEMP_SEQ):
         # Delete current template
@@ -557,7 +559,8 @@ def _clickSequenceMethod(self, iCommand : int, button : Button) -> None:
             configure(style= "fWidgetButton.TFrame")
 
     # Save template of previous method on changing focus
-    self._clickButton(BUTTON_SAVE_TEMPLATE)
+    if (self._strFocusedFrame is not None):
+        self._clickButton(BUTTON_SAVE_TEMPLATE)
 
     # Update new focused element
     self._strFocusedFrame = button.winfo_parent()

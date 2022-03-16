@@ -60,30 +60,30 @@ def _create_UtilitybandFrame(self, parentFrame: Frame) -> None:
     ButtonReset.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
     ButtonReset.bind("<Enter>", lambda event, 
-        entry = DELETE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+        entry = DELETE_BUTTON : self._PopUpWindowTooltip._on_rightclick(event, entry))
     
     ButtonReset.bind("<Leave>", lambda event, 
-        entry = DELETE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = DELETE_BUTTON  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     ButtonLoad = Button(self._fUtilitybandFrame, image=self._IconLoad, 
         command= lambda : self._clickButton(BUTTON_LOAD_TEMPLATE))        
     ButtonLoad.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
     ButtonLoad.bind("<Enter>", lambda event, 
-        entry = LOAD_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LOAD_BUTTON : self._PopUpWindowTooltip._on_rightclick(event, entry))
     
     ButtonLoad.bind("<Leave>", lambda event, 
-        entry = LOAD_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LOAD_BUTTON  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     ButtonSave = Button(self._fUtilitybandFrame, image=self._IconSave, 
         command= lambda : self._clickButton(BUTTON_SAVE_TEMPLATE))        
     ButtonSave.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
     ButtonSave.bind("<Enter>", lambda event, 
-        entry = SAVE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SAVE_BUTTON : self._PopUpWindowTooltip._on_rightclick(event, entry))
     
     ButtonSave.bind("<Leave>", lambda event, 
-        entry = SAVE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SAVE_BUTTON  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
 def _update_CentralFrame_EntryScreen(self, parentFrame: Frame) -> None:
     """
@@ -188,9 +188,9 @@ def _update_CentralFrame_Base(self, parentFrame: Frame) -> None:
     EntryTemplate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)    
 
     EntryTemplate.bind("<Enter>", lambda event, 
-        entry = TEMPLATE_NAME : self._PopUpWindow._on_rightclick(event, entry))
+        entry = TEMPLATE_NAME : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryTemplate.bind("<Leave>", lambda event, 
-        entry = TEMPLATE_NAME  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = TEMPLATE_NAME  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
     self._createSpacerFrame(self._fCentralParameterFrame, "fCentralFrame.TFrame")
@@ -228,9 +228,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
     EntryGLpMode.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryGLpMode.bind("<Enter>", lambda event, 
-        entry = SET_GLPM : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SET_GLPM : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryGLpMode.bind("<Leave>", lambda event, 
-        entry = SET_GLPM  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SET_GLPM  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Low performance mode latency
     fGLpModeL = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -246,9 +246,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
     EntryGLpModeL.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryGLpModeL.bind("<Enter>", lambda event, 
-        entry = SET_GLPM_LATENCY : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SET_GLPM_LATENCY : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryGLpModeL.bind("<Leave>", lambda event, 
-        entry = SET_GLPM_LATENCY  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SET_GLPM_LATENCY  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # WLAN mode
     fWLANMode = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -263,9 +263,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
     EntryWLANMode.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryWLANMode.bind("<Enter>", lambda event, 
-        entry = SET_WLAN_MODE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SET_WLAN_MODE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryWLANMode.bind("<Leave>", lambda event, 
-        entry = SET_WLAN_MODE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SET_WLAN_MODE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Server IP
     fServerIP = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -281,9 +281,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
     EntryServerIP.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryServerIP.bind("<Enter>", lambda event, 
-        entry = SET_SERVER_IP : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SET_SERVER_IP : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryServerIP.bind("<Leave>", lambda event, 
-        entry = SET_SERVER_IP  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SET_SERVER_IP  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Server Port
     fServerPort = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -299,9 +299,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
     EntryServerPort.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryServerPort.bind("<Enter>", lambda event, 
-        entry = SET_SERVER_PORT : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SET_SERVER_PORT : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryServerPort.bind("<Leave>", lambda event, 
-        entry = SET_SERVER_PORT  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SET_SERVER_PORT  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Client IP
     fClientIP = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -317,9 +317,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
     EntryClientIP.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryClientIP.bind("<Enter>", lambda event, 
-        entry = SET_CLIENT_IP : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SET_CLIENT_IP : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryClientIP.bind("<Leave>", lambda event, 
-        entry = SET_CLIENT_IP  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SET_CLIENT_IP  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Client Port
     fClientPort = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -335,9 +335,9 @@ def _update_CentralFrame_Options(self, parentFrame: Frame) -> None:
     EntryClientPort.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryClientPort.bind("<Enter>", lambda event, 
-        entry = SET_CLIENT_PORT : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SET_CLIENT_PORT : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryClientPort.bind("<Leave>", lambda event, 
-        entry = SET_CLIENT_PORT  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SET_CLIENT_PORT  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Bind leave event to _fCentralParameterFrame
     self._fCentralParameterFrame.bind("<Leave>", 
@@ -380,9 +380,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
     EntryPotentialSteps.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryPotentialSteps.bind("<Enter>", lambda event, 
-        entry = POTENTIAL_STEPS : self._PopUpWindow._on_rightclick(event, entry))
+        entry = POTENTIAL_STEPS : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryPotentialSteps.bind("<Leave>", lambda event, 
-        entry = POTENTIAL_STEPS  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = POTENTIAL_STEPS  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Pulse lengths
     fPulseLengths = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -398,9 +398,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
     EntryPulseLengths.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryPulseLengths.bind("<Enter>", lambda event, 
-        entry = PULSE_LENGTH : self._PopUpWindow._on_rightclick(event, entry))
+        entry = PULSE_LENGTH : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryPulseLengths.bind("<Leave>", lambda event, 
-        entry = PULSE_LENGTH  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = PULSE_LENGTH  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Sampling rate
     fSamplingRate = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -416,9 +416,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
     EntrySamplingRate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntrySamplingRate.bind("<Enter>", lambda event, 
-        entry = SAMPLING_RATE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SAMPLING_RATE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntrySamplingRate.bind("<Leave>", lambda event, 
-        entry = SAMPLING_RATE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SAMPLING_RATE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Cycles
     fCycles = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -434,9 +434,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCycle.bind("<Enter>", lambda event, 
-        entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = CYCLE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCycle.bind("<Leave>", lambda event, 
-        entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = CYCLE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # CurrentRange
     fCurrentRange = Frame(self._fCentralParameterFrame, style= "fWidget.TFrame")
@@ -452,9 +452,9 @@ def _update_CentralFrame_CA(self, parentFrame: Frame) -> None:
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCurrentRange.bind("<Enter>", lambda event, 
-        entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LPTIA_RTIA_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCurrentRange.bind("<Leave>", lambda event, 
-        entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LPTIA_RTIA_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
     self._createSpacerFrame(self._fCentralParameterFrame, "fCentralFrame.TFrame")
@@ -506,9 +506,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStartVoltage.bind("<Enter>", lambda event, 
-        entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = START_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStartVoltage.bind("<Leave>", lambda event, 
-        entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = START_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # StopVoltage
     fStopVoltage = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -524,9 +524,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
     EntryStopVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStopVoltage.bind("<Enter>", lambda event, 
-        entry = STOP_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = STOP_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStopVoltage.bind("<Leave>", lambda event, 
-        entry = STOP_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = STOP_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Stepsize
     fStepsize = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -542,9 +542,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
     EntryStepsize.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStepsize.bind("<Enter>", lambda event, 
-        entry = STEP_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = STEP_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStepsize.bind("<Leave>", lambda event, 
-        entry = STEP_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = STEP_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Scanrate
     fScanrate = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -560,9 +560,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
     EntryScanrate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryScanrate.bind("<Enter>", lambda event, 
-        entry = SCAN_RATE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SCAN_RATE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryScanrate.bind("<Leave>", lambda event, 
-        entry = SCAN_RATE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SCAN_RATE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Cycles
     fCycles = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -578,9 +578,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCycle.bind("<Enter>", lambda event, 
-        entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = CYCLE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCycle.bind("<Leave>", lambda event, 
-        entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = CYCLE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # CurrentRange
     fCurrentRange = Frame(self._fCentralParameterFrame, style= "fWidget.TFrame")
@@ -596,9 +596,9 @@ def _update_CentralFrame_LSV(self, parentFrame: Frame) -> None:
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCurrentRange.bind("<Enter>", lambda event, 
-        entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LPTIA_RTIA_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCurrentRange.bind("<Leave>", lambda event, 
-        entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LPTIA_RTIA_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
     self._createSpacerFrame(self._fCentralParameterFrame, "fCentralFrame.TFrame")
@@ -650,9 +650,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStartVoltage.bind("<Enter>", lambda event, 
-        entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = START_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStartVoltage.bind("<Leave>", lambda event, 
-        entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = START_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # LowerTurningVoltage
     fLowerVoltage = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -668,9 +668,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
     EntryLowerVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryLowerVoltage.bind("<Enter>", lambda event, 
-        entry = LOWER_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LOWER_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryLowerVoltage.bind("<Leave>", lambda event, 
-        entry = LOWER_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LOWER_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # UpperTurningVoltage
     fUpperVoltage = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -686,9 +686,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
     EntryUpperVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryUpperVoltage.bind("<Enter>", lambda event, 
-        entry = UPPER_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = UPPER_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryUpperVoltage.bind("<Leave>", lambda event, 
-        entry = UPPER_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = UPPER_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Stepsize
     fStepsize = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -704,9 +704,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
     EntryStepsize.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStepsize.bind("<Enter>", lambda event, 
-        entry = STEP_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = STEP_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStepsize.bind("<Leave>", lambda event, 
-        entry = STEP_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = STEP_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Scanrate
     fScanrate = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -722,9 +722,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
     EntryScanrate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryScanrate.bind("<Enter>", lambda event, 
-        entry = SCAN_RATE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SCAN_RATE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryScanrate.bind("<Leave>", lambda event, 
-        entry = SCAN_RATE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SCAN_RATE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Cycles
     fCycles = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -740,9 +740,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCycle.bind("<Enter>", lambda event, 
-        entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = CYCLE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCycle.bind("<Leave>", lambda event, 
-        entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = CYCLE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # CurrentRange
     fCurrentRange = Frame(self._fCentralParameterFrame, style= "fWidget.TFrame")
@@ -758,9 +758,9 @@ def _update_CentralFrame_CV(self, parentFrame: Frame) -> None:
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCurrentRange.bind("<Enter>", lambda event, 
-        entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LPTIA_RTIA_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCurrentRange.bind("<Leave>", lambda event, 
-        entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LPTIA_RTIA_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
     self._createSpacerFrame(self._fCentralParameterFrame, "fCentralFrame.TFrame")
@@ -812,9 +812,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
     EntryBaseVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryBaseVoltage.bind("<Enter>", lambda event, 
-        entry = BASE_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = BASE_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryBaseVoltage.bind("<Leave>", lambda event, 
-        entry = BASE_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = BASE_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # StartVoltage
     fStartVoltage = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -830,9 +830,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStartVoltage.bind("<Enter>", lambda event, 
-        entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = START_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStartVoltage.bind("<Leave>", lambda event, 
-        entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = START_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # StopVoltage
     fStopVoltage = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -848,9 +848,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
     EntryStopVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStopVoltage.bind("<Enter>", lambda event, 
-        entry = STOP_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = STOP_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStopVoltage.bind("<Leave>", lambda event, 
-        entry = STOP_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = STOP_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # DeltaV staircase
     fDeltaVStaircase = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -866,9 +866,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
     EntryDeltaVStaircase.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryDeltaVStaircase.bind("<Enter>", lambda event, 
-        entry = DELTA_V_STAIRCASE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = DELTA_V_STAIRCASE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryDeltaVStaircase.bind("<Leave>", lambda event, 
-        entry = DELTA_V_STAIRCASE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = DELTA_V_STAIRCASE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Pulse lengths
     fPulseLengths = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -884,9 +884,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
     EntryPulseLengths.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryPulseLengths.bind("<Enter>", lambda event, 
-        entry = PULSE_LENGTH : self._PopUpWindow._on_rightclick(event, entry))
+        entry = PULSE_LENGTH : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryPulseLengths.bind("<Leave>", lambda event, 
-        entry = PULSE_LENGTH  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = PULSE_LENGTH  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Sampling duration
     fSamplingDuration = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -902,9 +902,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
     EntrySamplingDuration.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntrySamplingDuration.bind("<Enter>", lambda event, 
-        entry = SAMPLING_DURATION : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SAMPLING_DURATION : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntrySamplingDuration.bind("<Leave>", lambda event, 
-        entry = SAMPLING_DURATION  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SAMPLING_DURATION  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Cycles
     fCycles = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -920,9 +920,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCycle.bind("<Enter>", lambda event, 
-        entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = CYCLE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCycle.bind("<Leave>", lambda event, 
-        entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = CYCLE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # CurrentRange
     fCurrentRange = Frame(self._fCentralParameterFrame, style= "fWidget.TFrame")
@@ -938,9 +938,9 @@ def _update_CentralFrame_NPV(self, parentFrame: Frame) -> None:
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCurrentRange.bind("<Enter>", lambda event, 
-        entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LPTIA_RTIA_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCurrentRange.bind("<Leave>", lambda event, 
-        entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LPTIA_RTIA_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
     self._createSpacerFrame(self._fCentralParameterFrame, "fCentralFrame.TFrame")
@@ -992,9 +992,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStartVoltage.bind("<Enter>", lambda event, 
-        entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = START_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStartVoltage.bind("<Leave>", lambda event, 
-        entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = START_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # StopVoltage
     fStopVoltage = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1010,9 +1010,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
     EntryStopVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStopVoltage.bind("<Enter>", lambda event, 
-        entry = STOP_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = STOP_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStopVoltage.bind("<Leave>", lambda event, 
-        entry = STOP_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = STOP_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # DeltaV staircase
     fDeltaVStaircase = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1028,9 +1028,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
     EntryDeltaVStaircase.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryDeltaVStaircase.bind("<Enter>", lambda event, 
-        entry = DELTA_V_STAIRCASE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = DELTA_V_STAIRCASE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryDeltaVStaircase.bind("<Leave>", lambda event, 
-        entry = DELTA_V_STAIRCASE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = DELTA_V_STAIRCASE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # DeltaV peak
     fDeltaVPeak = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1046,9 +1046,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
     EntryDeltaVPeak.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryDeltaVPeak.bind("<Enter>", lambda event, 
-        entry = DELTA_V_PEAK : self._PopUpWindow._on_rightclick(event, entry))
+        entry = DELTA_V_PEAK : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryDeltaVPeak.bind("<Leave>", lambda event, 
-        entry = DELTA_V_PEAK  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = DELTA_V_PEAK  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Pulse lengths
     fPulseLengths = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1064,9 +1064,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
     EntryPulseLengths.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryPulseLengths.bind("<Enter>", lambda event, 
-        entry = PULSE_LENGTH : self._PopUpWindow._on_rightclick(event, entry))
+        entry = PULSE_LENGTH : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryPulseLengths.bind("<Leave>", lambda event, 
-        entry = PULSE_LENGTH  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = PULSE_LENGTH  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Sampling duration
     fSamplingDuration = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1082,9 +1082,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
     EntrySamplingDuration.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntrySamplingDuration.bind("<Enter>", lambda event, 
-        entry = SAMPLING_DURATION : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SAMPLING_DURATION : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntrySamplingDuration.bind("<Leave>", lambda event, 
-        entry = SAMPLING_DURATION  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SAMPLING_DURATION  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Cycles
     fCycles = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1100,9 +1100,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCycle.bind("<Enter>", lambda event, 
-        entry = CYCLE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = CYCLE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCycle.bind("<Leave>", lambda event, 
-        entry = CYCLE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = CYCLE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # CurrentRange
     fCurrentRange = Frame(self._fCentralParameterFrame, style= "fWidget.TFrame")
@@ -1118,9 +1118,9 @@ def _update_CentralFrame_DPV(self, parentFrame: Frame) -> None:
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCurrentRange.bind("<Enter>", lambda event, 
-        entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LPTIA_RTIA_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCurrentRange.bind("<Leave>", lambda event, 
-        entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LPTIA_RTIA_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
     self._createSpacerFrame(self._fCentralParameterFrame, "fCentralFrame.TFrame")
@@ -1172,9 +1172,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
     EntryStartVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStartVoltage.bind("<Enter>", lambda event, 
-        entry = START_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = START_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStartVoltage.bind("<Leave>", lambda event, 
-        entry = START_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = START_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # StopVoltage
     fStopVoltage = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1190,9 +1190,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
     EntryStopVoltage.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryStopVoltage.bind("<Enter>", lambda event, 
-        entry = STOP_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = STOP_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryStopVoltage.bind("<Leave>", lambda event, 
-        entry = STOP_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = STOP_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # DeltaV staircase
     fDeltaVStaircase = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1208,9 +1208,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
     EntryDeltaVStaircase.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryDeltaVStaircase.bind("<Enter>", lambda event, 
-        entry = DELTA_V_STAIRCASE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = DELTA_V_STAIRCASE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryDeltaVStaircase.bind("<Leave>", lambda event, 
-        entry = DELTA_V_STAIRCASE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = DELTA_V_STAIRCASE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # DeltaV peak
     fDeltaVPeak = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1226,9 +1226,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
     EntryDeltaVPeak.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryDeltaVPeak.bind("<Enter>", lambda event, 
-        entry = DELTA_V_PEAK : self._PopUpWindow._on_rightclick(event, entry))
+        entry = DELTA_V_PEAK : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryDeltaVPeak.bind("<Leave>", lambda event, 
-        entry = DELTA_V_PEAK  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = DELTA_V_PEAK  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Duty cycle
     fPulseLengths = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1244,9 +1244,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
     EntryPulseLengths.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryPulseLengths.bind("<Enter>", lambda event, 
-        entry = DUTY_CYCLE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = DUTY_CYCLE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryPulseLengths.bind("<Leave>", lambda event, 
-        entry = DUTY_CYCLE : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = DUTY_CYCLE : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Sampling duration
     fSamplingDuration = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1262,9 +1262,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
     EntrySamplingDuration.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntrySamplingDuration.bind("<Enter>", lambda event, 
-        entry = SAMPLING_DURATION : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SAMPLING_DURATION : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntrySamplingDuration.bind("<Leave>", lambda event, 
-        entry = SAMPLING_DURATION : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SAMPLING_DURATION : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Cycles
     fCycles = Frame(self._fCentralParameterFrame, style="fWidget.TFrame")
@@ -1280,9 +1280,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCycle.bind("<Enter>", lambda event, 
-        entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LPTIA_RTIA_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCycle.bind("<Leave>", lambda event, 
-        entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LPTIA_RTIA_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # CurrentRange
     fCurrentRange = Frame(self._fCentralParameterFrame, style= "fWidget.TFrame")
@@ -1298,9 +1298,9 @@ def _update_CentralFrame_SWV(self, parentFrame: Frame) -> None:
     EntryCurrentRange.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryCurrentRange.bind("<Enter>", lambda event, 
-        entry = LPTIA_RTIA_SIZE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LPTIA_RTIA_SIZE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCurrentRange.bind("<Leave>", lambda event, 
-        entry = LPTIA_RTIA_SIZE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LPTIA_RTIA_SIZE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Fill in spacer frame to separate parameters
     self._createSpacerFrame(self._fCentralParameterFrame, "fCentralFrame.TFrame")
@@ -1349,9 +1349,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
     EntryFixedWEPotential.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryFixedWEPotential.bind("<Enter>", lambda event, 
-        entry = FIXED_WE_POTENTIAL : self._PopUpWindow._on_rightclick(event, entry))
+        entry = FIXED_WE_POTENTIAL : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryFixedWEPotential.bind("<Leave>", lambda event, 
-        entry = FIXED_WE_POTENTIAL  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = FIXED_WE_POTENTIAL  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Mains filter
     fMainsFilter = Frame(self._fAdvancedSettingContainer, style="fWidget.TFrame")
@@ -1366,9 +1366,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
     EntryMainsFilter.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryMainsFilter.bind("<Enter>", lambda event, 
-        entry = MAINS_FILTER : self._PopUpWindow._on_rightclick(event, entry))
+        entry = MAINS_FILTER : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryMainsFilter.bind("<Leave>", lambda event, 
-        entry = MAINS_FILTER  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = MAINS_FILTER  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Sinc 2 oversampling rate
     fOsrSinc2 = Frame(self._fAdvancedSettingContainer, style="fWidget.TFrame")
@@ -1384,9 +1384,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
     EntryOsrSinc2.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryOsrSinc2.bind("<Enter>", lambda event, 
-        entry = SINC2_OVERSAMPLING : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SINC2_OVERSAMPLING : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryOsrSinc2.bind("<Leave>", lambda event, 
-        entry = SINC2_OVERSAMPLING  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SINC2_OVERSAMPLING  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Sinc 3 oversmapling rate
     fOsrSinc3 = Frame(self._fAdvancedSettingContainer, style="fWidget.TFrame")
@@ -1402,9 +1402,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
     EntryOsrSinc3.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryOsrSinc3.bind("<Enter>", lambda event, 
-        entry = SINC3_OVERSAMPLING : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SINC3_OVERSAMPLING : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryOsrSinc3.bind("<Leave>", lambda event, 
-        entry = SINC3_OVERSAMPLING  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SINC3_OVERSAMPLING  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Enable optimizer
     fOptimizer = Frame(self._fAdvancedSettingContainer, style="fWidget.TFrame")
@@ -1419,9 +1419,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
     EntryOptimizer.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryOptimizer.bind("<Enter>", lambda event, 
-        entry = ENABLE_OPTIMIZER : self._PopUpWindow._on_rightclick(event, entry))
+        entry = ENABLE_OPTIMIZER : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryOptimizer.bind("<Leave>", lambda event, 
-        entry = ENABLE_OPTIMIZER  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = ENABLE_OPTIMIZER  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Low performance mode
     fLpMode = Frame(self._fAdvancedSettingContainer, style="fWidget.TFrame")
@@ -1436,9 +1436,9 @@ def _createAdvancedSettingFrame(self, parentFrame : Frame) -> None:
     EntryLpMode.pack(side= LEFT, fill= Y, padx = 5, pady= 5)
 
     EntryLpMode.bind("<Enter>", lambda event, 
-        entry = LOW_PERFORMANCE_MODE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LOW_PERFORMANCE_MODE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryLpMode.bind("<Leave>", lambda event, 
-        entry = LOW_PERFORMANCE_MODE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LOW_PERFORMANCE_MODE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
 def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
     """
@@ -1488,9 +1488,9 @@ def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
     EntryTemplate.pack(side= LEFT, fill= Y, padx = 5, pady= 5)   
 
     EntryTemplate.bind("<Enter>", lambda event, 
-        entry = TEMPLATE_NAME_SEQUENCE : self._PopUpWindow._on_rightclick(event, entry))
+        entry = TEMPLATE_NAME_SEQUENCE : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryTemplate.bind("<Leave>", lambda event, 
-        entry = TEMPLATE_NAME_SEQUENCE  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = TEMPLATE_NAME_SEQUENCE  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Add frame for sequence cycles
     fCycles = Frame(fWindowLeft, style="fWidget.TFrame")
@@ -1506,9 +1506,9 @@ def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
     EntryCycle.pack(side= LEFT, fill= Y, padx = 5, pady= 5) 
 
     EntryCycle.bind("<Enter>", lambda event, 
-        entry = SEQUENCE_CYCLES : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SEQUENCE_CYCLES : self._PopUpWindowTooltip._on_rightclick(event, entry))
     EntryCycle.bind("<Leave>", lambda event, 
-        entry = SEQUENCE_CYCLES  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SEQUENCE_CYCLES  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     # Create a canvas for the left and right window
     canvasWindowLeft = Canvas(fWindowLeft, background= "white",
@@ -1547,30 +1547,30 @@ def _update_CentralFrame_Sequence(self, parentFrame : Frame) -> None:
     ButtonDelete.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
     ButtonDelete.bind("<Enter>", lambda event, 
-        entry = DELETE_SEQUENCE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+        entry = DELETE_SEQUENCE_BUTTON : self._PopUpWindowTooltip._on_rightclick(event, entry))
     
     ButtonDelete.bind("<Leave>", lambda event, 
-        entry = DELETE_SEQUENCE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = DELETE_SEQUENCE_BUTTON  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     ButtonLoad = Button(fUtility, image=self._IconLoadSequence, 
         command= lambda : self._clickButton(BUTTON_LOAD_TEMP_SEQ))        
     ButtonLoad.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
     ButtonLoad.bind("<Enter>", lambda event, 
-        entry = LOAD_SEQUENCE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+        entry = LOAD_SEQUENCE_BUTTON : self._PopUpWindowTooltip._on_rightclick(event, entry))
     
     ButtonLoad.bind("<Leave>", lambda event, 
-        entry = LOAD_SEQUENCE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = LOAD_SEQUENCE_BUTTON  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
     ButtonSave = Button(fUtility, image=self._IconSaveSequence, 
         command= lambda : self._clickButton(BUTTON_SAVE_TEMP_SEQ))        
     ButtonSave.pack(side= RIGHT, fill= Y, padx = 5, pady= 5)
 
     ButtonSave.bind("<Enter>", lambda event, 
-        entry = SAVE_SEQUENCE_BUTTON : self._PopUpWindow._on_rightclick(event, entry))
+        entry = SAVE_SEQUENCE_BUTTON : self._PopUpWindowTooltip._on_rightclick(event, entry))
     
     ButtonSave.bind("<Leave>", lambda event, 
-        entry = SAVE_SEQUENCE_BUTTON  : self._PopUpWindow._on_rightclick_release(event, entry))
+        entry = SAVE_SEQUENCE_BUTTON  : self._PopUpWindowTooltip._on_rightclick_release(event, entry))
 
 def _update_CentralFrame_Sequence_Add(self, strMethod : str) -> None:
     """
